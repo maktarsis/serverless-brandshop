@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <title>ServerlessBrandshop</title>
@@ -7,8 +8,31 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Inknut+Antiqua" rel="stylesheet">
 </head>
+
 <body>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+  <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+  <!-- <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-messaging.js"></script> -->
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyBsHzDdOYJ0b7_SbXtA3WmZXAr4NiuEXFs",
+      authDomain: "serverless-brandshop.firebaseapp.com",
+      databaseURL: "https://serverless-brandshop.firebaseio.com",
+      projectId: "serverless-brandshop",
+      storageBucket: "serverless-brandshop.appspot.com",
+      messagingSenderId: "712023285181"
+    };
+    firebase.initializeApp(config);
+
+  </script>
   <app-root></app-root>
 </body>
+
 </html>
