@@ -8,7 +8,13 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "build:ssr": "npm run build:client-server-bundles && functions:server && npm run webpack:server",
+    "serve:ssr": "node dist/server.js",
+    "firebase:deployment": "npm run build:ssr && firebase deploy",
+    "build:client-server-bundles": "ng build -prod && ng build -aot -app ssr",
+    "webpack:server": "webpack --config webpack.server.config.js --progress --colors",
+    "functions:server": "npm --prefix functions install"
   },
   "private": true,
   "dependencies": {
@@ -23,10 +29,12 @@
     "@angular/material": "^5.2.4",
     "@angular/platform-browser": "^5.0.0",
     "@angular/platform-browser-dynamic": "^5.0.0",
+    "@angular/platform-server": "^5.2.8",
     "@angular/router": "^5.0.0",
+    "@nguniversal/module-map-ngfactory-loader": "^5.0.0-beta.6",
     "core-js": "^2.4.1",
-    "fullpage.js": "^2.9.6",
     "rxjs": "^5.5.2",
+    "ts-loader": "^3.5.0",
     "zone.js": "^0.8.14"
   },
   "devDependencies": {

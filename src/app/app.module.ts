@@ -2,7 +2,6 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
 
-import { MnFullpageModule } from "ngx-fullpage";
 import { SharedModule } from "./shared/shared.module";
 
 import { appRouting } from "./app.routes";
@@ -15,7 +14,7 @@ import { HeaderComponent } from "./components/header/header.component";
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
   imports: [
-    BrowserModule,
+      BrowserModule.withServerTransition({appId: 'app-root'}),
     RouterModule,
     SharedModule,
     appRouting,
