@@ -2,9 +2,11 @@
 - service workers
 - design: fonts, main page photos, design
 - user profile
-- Unit, intergration, e2e testing
+- Unit, integration, e2e testing
+
 
 
 try
 - primeng
 - angular animation
+- preboot (optional)
