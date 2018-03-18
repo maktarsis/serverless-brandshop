@@ -1,18 +1,6 @@
 {
-  "database": {
-    "rules": "database.rules.json"
-  },
-  "firestore": {
-    "rules": "firestore.rules",
-    "indexes": "firestore.indexes.json"
-  },
-  "functions": {
-    "predeploy": [
-    ],
-    "source": "functions"
-  },
   "hosting": {
-    "public": "functions/dist",
+    "public": "functions/dist-server",
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -21,11 +9,8 @@
     "rewrites": [
       {
         "source": "**",
-        "function": "ssr"
+        "function": "ssrapp"
       }
     ]
-  },
-  "storage": {
-    "rules": "storage.rules"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "name": "serverless-brandshop",
+  "name": "reignarr-brandshop",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -9,12 +9,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:ssr": "npm run build:client-server-bundles && functions:server && npm run webpack:server",
-    "serve:ssr": "node dist/server.js",
-    "firebase:deployment": "npm run build:ssr && firebase deploy",
-    "build:client-server-bundles": "ng build -prod && ng build -aot -app ssr",
-    "webpack:server": "webpack --config webpack.server.config.js --progress --colors",
-    "functions:server": "npm --prefix functions install"
+    "firebase:deploy": "npm run build:ssr && npm run tsc:functions && firebase deploy",
+    "build:ssr": "ng build --prod && ng build --prod --app 1 --aot --output-hashing=none",
+    "tsc:functions": "tsc -p server/tsconfig.functions.json"
   },
   "private": true,
   "dependencies": {

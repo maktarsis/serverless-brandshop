@@ -1,12 +1,12 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "serverless-brandshop"
+    "name": "reignarr-brandshop"
   },
   "apps": [
     {
       "root": "src",
-      "outDir": "dist",
+      "outDir": "functions/dist",
       "assets": [
         "assets",
         "favicon.ico"
@@ -30,10 +30,9 @@
       }
     },
     {
-      "name": "ssr",
       "platform": "server",
       "root": "src",
-      "outDir": "functions/dist-ssr",
+      "outDir": "functions/dist-server",
       "assets": [
         "assets",
         "favicon.ico"
@@ -47,8 +46,7 @@
       "styles": [
         "styles.scss"
       ],
-      "scripts": [
-      ],
+      "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

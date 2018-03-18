@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('serverless-brandshop App', () => {
+describe('reignarr-brandshop App', () => {
   let page: AppPage;
 
   beforeEach(() => {

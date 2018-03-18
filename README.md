@@ -1,4 +1,4 @@
-# Serverless brandshop project
+# Serverless brandshop "Reignarr" project
 
 ## Currently in development mode!
 

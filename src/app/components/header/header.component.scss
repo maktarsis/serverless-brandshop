@@ -13,28 +13,31 @@
 .header__brandline {
     display: flex;
     align-items: center;
-    height: 50px;
-    background: #0a0a0a;
-    border-bottom: 1px solid #ebebeb;
+    height: 60px;
+    background: #0a052c;
+    border-bottom: 1px solid #d2cbea;
+    //background: #0a0a0a;
+    //border-bottom: 1px solid #ebebeb;
     padding-left: 20px;
 }
 
 .header__brandname {
     font-weight: 700;
-    font-size: 20px;
+    font-size: 23px;
     text-transform: uppercase;
-    letter-spacing: 15px;
+    letter-spacing: 20px;
 }
 
 .header__nav {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 0 20px;
-    margin-top: 10px;
+    padding: 15px 20px;
     font-size: 18px;
     text-transform: uppercase;
-    background: transparent;
+    //background: #828282;
+    background: #0e073b;
+    box-shadow: 0 0 16px 7px rgba(14,7,59,.75);
 }
 
 .header__nav-main a {
