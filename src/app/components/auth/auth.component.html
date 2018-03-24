@@ -1,0 +1,18 @@
+<div>
+  <h3>Welcome to Reignarr</h3>
+
+  <p>&nbsp;</p>
+
+  <form #form="ngForm" style="margin:10%;">
+    <div>
+      <label for="email">Email address</label>
+      <input type="email" id="email" name="email" ngModel required>
+    </div>
+    <div>
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" ngModel required>
+    </div>
+    <button (click)="login(form.value)">Login</button>
+    <button (click)="signup(form.value)">Sign Up</button>
+  </form>
+</div>
