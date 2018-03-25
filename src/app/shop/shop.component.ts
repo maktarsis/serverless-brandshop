@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
-import { AngularFirestore} from 'angularfire2/firestore';
-import {AngularFireAuth} from 'angularfire2/auth';
+import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 
 @Component({
@@ -24,18 +24,18 @@ export class ShopComponent implements OnInit {
 			items.map(item => {
 				const data = item.payload.doc.data();
 				const id = item.payload.doc.id;
-				return { id, ...data};
+				return { id, ...data };
 			})
-		))
+		));
 
-		this.auth.authState.subscribe(user => {
-			if (user) {
-				this.user = user;
-				return;
-			}
-
-			this.router.navigate(['']);
-		})
+		// this.auth.authState.subscribe(user => {
+		// 	if (user) {
+		// 		this.user = user;
+		// 		return;
+		// 	}
+		//
+		// 	this.router.navigate(['']);
+		// });
 	}
 
 	public logout() {
@@ -48,14 +48,14 @@ export class ShopComponent implements OnInit {
 				text: input.value,
 				user: this.user.email,
 				createdAt: new Date(),
-				likes: 0
+				likes: 0,
 			});
 			input.value = '';
 		}
 	}
 
 	public like(id: string, previousCount: number) {
-		this.collection.doc(id).update({ likes: previousCount + 1})
+		this.collection.doc(id).update({ likes: previousCount + 1 });
 	}
 
 	public delete(id: string) {
