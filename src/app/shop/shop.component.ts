@@ -1,32 +1,75 @@
-import { Component, OnInit } from '@angular/core';
+import {
+	Component,
+	OnInit,
+	OnDestroy
+} from '@angular/core';
 
-import { Router } from '@angular/router';
-import { AngularFirestore } from 'angularfire2/firestore';
+import {
+	ActivatedRoute,
+	Router
+} from '@angular/router';
+import {
+	AngularFirestore,
+	AngularFirestoreDocument
+} from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'firebase/app';
+
+
+import 'rxjs/add/operator/takeUntil';
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
+
+import { ShopService } from './shop.service';
+import { Apparels } from './interfaces/apparels.interface';
 
 @Component({
 	selector: 'app-shop',
 	templateUrl: './shop.component.html',
 	styleUrls: ['./shop.component.scss'],
+	providers: [ShopService]
 })
-export class ShopComponent implements OnInit {
-	items;
+export class ShopComponent implements OnInit, OnDestroy {
 	user;
 	collection;
+	public categories: string[];
+	public apparels: any[] = [];
+	private ngUnsubscribe: Subject<boolean> = new Subject();
 
-	constructor(private router: Router, private auth: AngularFireAuth, private db: AngularFirestore) {
+	public apparelsCollection: AngularFirestoreDocument<Apparels>;
+	public apparels$: Observable<Apparels>;
+	public myApparels;
+
+	constructor(
+		private auth: AngularFireAuth,
+		private db: AngularFirestore,
+		private afs: AngularFirestore,
+		private shopService: ShopService
+	) {
+		this.apparelsCollection = this.afs.collection('apparels').doc('all');
+		this.apparels$ = this.apparelsCollection.valueChanges();
 	}
 
-	ngOnInit() {
-		this.collection = this.db.collection('items');
-		this.items = this.collection.snapshotChanges().map(items => (
-			items.map(item => {
-				const data = item.payload.doc.data();
-				const id = item.payload.doc.id;
-				return { id, ...data };
-			})
-		));
+	public ngOnInit() {
+		// TODO: RESOLVER
+		// const categories1 = this.route.snapshot.data['category'];
+		// console.log(categories1);
+		this.categories = [
+			'Accessories',
+			'Jackets',
+			'Pants',
+			'Sneakers',
+			'Sweaters',
+			'T-Shirts',
+			'SALE'
+		];
+
+
+		this.apparels$
+		    .takeUntil(this.ngUnsubscribe)
+		    .subscribe(allApparels => {
+			    const flattenApparels = Object.values(allApparels).map(apparels => apparels);
+			    this.apparels = [].concat.apply([], flattenApparels);
+		    });
 
 		// this.auth.authState.subscribe(user => {
 		// 	if (user) {
@@ -48,7 +91,7 @@ export class ShopComponent implements OnInit {
 				text: input.value,
 				user: this.user.email,
 				createdAt: new Date(),
-				likes: 0,
+				likes: 0
 			});
 			input.value = '';
 		}
@@ -60,5 +103,10 @@ export class ShopComponent implements OnInit {
 
 	public delete(id: string) {
 		this.collection.doc(id).delete();
+	}
+
+	public ngOnDestroy(): void {
+		this.ngUnsubscribe.next();
+		this.ngUnsubscribe.complete();
 	}
 }

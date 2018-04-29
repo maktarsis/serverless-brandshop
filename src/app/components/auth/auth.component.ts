@@ -13,13 +13,13 @@ import * as firebase from 'firebase/app';
 export class AuthComponent implements OnInit {
 
 	constructor(private auth: AngularFireAuth, private router: Router) {
-		this.auth.authState.subscribe(state => {
-			if (!state) {
-				return;
-			}
-
-			this.router.navigate(['']);
-		})
+		// this.auth.authState.subscribe(state => {
+		// 	if (!state) {
+		// 		return;
+		// 	}
+		//
+		// 	this.router.navigate(['']);
+		// })
 	}
 
 	ngOnInit() {
@@ -33,7 +33,6 @@ export class AuthComponent implements OnInit {
 	}
 
 	public signup(form: { email: string, password: string}) {
-		console.log(form.email, form.password);
 		this.auth.auth.createUserWithEmailAndPassword(form.email, form.password);
 	}
 }

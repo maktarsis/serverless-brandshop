@@ -6,7 +6,6 @@ import { FormsModule } from '@angular/forms';
 import { SharedModule } from './shared/shared.module';
 import { appRouting } from './app.routes';
 import { HomeModule } from './home/home.module';
-import { ShopModule } from './shop/shop.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { AuthComponent } from './components/auth/auth.component';
@@ -31,8 +30,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 		FormsModule,
 		SharedModule,
 		appRouting,
-		HomeModule,
-		ShopModule,
+		HomeModule
 	],
 	providers: [],
 	bootstrap: [AppComponent],

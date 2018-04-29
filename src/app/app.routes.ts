@@ -1,5 +1,8 @@
 import { ModuleWithProviders } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {
+	RouterModule,
+	Routes
+} from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
 import { ShopComponent } from './shop/shop.component';
@@ -9,22 +12,20 @@ export const routes: Routes = [
 	{
 		path: '',
 		pathMatch: 'full',
-		component: HomeComponent,
+		component: HomeComponent
 	},
 	{
 		path: 'shop',
-		pathMatch: 'full',
-		component: ShopComponent,
+		loadChildren: 'app/shop/shop.module#ShopModule'
 	},
 	{
 		path: 'auth',
 		pathMatch: 'full',
-		component: AuthComponent,
-	},
-	{
-		path: '**',
-		redirectTo: '',
-	},
+		component: AuthComponent
+	}
 ];
 
-export const appRouting: ModuleWithProviders = RouterModule.forRoot(routes);
+export const appRouting: ModuleWithProviders =
+	RouterModule.forRoot(routes
+		// { enableTracing: true}
+	);

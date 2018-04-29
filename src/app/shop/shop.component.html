@@ -1,3 +1,14 @@
-<p>
-    shop works!
-</p>
+<div class="container shop">
+
+    <ul *ngFor="let apparel of myApparels">
+        <li>
+            {{ apparel.title }}
+        </li>
+    </ul>
+
+    <shop-bar class="shop__bar" [categories]="categories"></shop-bar>
+
+    <shop-apparels class="shop__apparels" [apparels]="apparels"></shop-apparels>
+
+</div>
+
