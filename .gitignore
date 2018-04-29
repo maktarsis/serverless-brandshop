@@ -7,6 +7,7 @@
 
 # dependencies
 /node_modules
+/functions/node_modules
 
 # video_content
 /video
