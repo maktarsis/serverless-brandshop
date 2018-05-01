@@ -22,7 +22,7 @@ import { ShopService } from './shop.service';
 import { Apparels } from './interfaces/apparels.interface';
 
 @Component({
-	selector: 'app-shop',
+	selector: 'shop-root',
 	templateUrl: './shop.component.html',
 	styleUrls: ['./shop.component.scss'],
 	providers: [ShopService]

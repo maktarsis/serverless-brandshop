@@ -19,6 +19,10 @@ export const routes: Routes = [
 		loadChildren: 'app/shop/shop.module#ShopModule'
 	},
 	{
+		path: 'location',
+		loadChildren: 'app/location/location.module#LocationModule'
+	},
+	{
 		path: 'auth',
 		pathMatch: 'full',
 		component: AuthComponent
