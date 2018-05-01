@@ -3,7 +3,7 @@ import {
 	OnInit,
 	Input
 } from '@angular/core';
-import { Apparel } from '../interfaces/apparel.interface';
+import { Apparel } from '../shared/apparel.interface';
 
 @Component({
 	selector: 'shop-apparels',

@@ -3,11 +3,7 @@ import {
 	OnInit,
 	OnDestroy
 } from '@angular/core';
-
-import {
-	ActivatedRoute,
-	Router
-} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import {
 	AngularFirestore,
 	AngularFirestoreDocument
@@ -19,13 +15,13 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
 import { ShopService } from './shop.service';
-import { Apparels } from './interfaces/apparels.interface';
+import { Apparels } from './shared/apparels.interface';
+import { categories } from './shared/apparels.constants';
 
 @Component({
 	selector: 'app-shop',
 	templateUrl: './shop.component.html',
-	styleUrls: ['./shop.component.scss'],
-	providers: [ShopService]
+	styleUrls: ['./shop.component.scss']
 })
 export class ShopComponent implements OnInit, OnDestroy {
 	user;
@@ -43,7 +39,6 @@ export class ShopComponent implements OnInit, OnDestroy {
 		private auth: AngularFireAuth,
 		private db: AngularFirestore,
 		private afs: AngularFirestore,
-		private shopService: ShopService,
 		private route: ActivatedRoute
 	) {
 		db.firestore.settings({ timestampsInSnapshots: true });
@@ -52,17 +47,9 @@ export class ShopComponent implements OnInit, OnDestroy {
 	}
 
 	public ngOnInit() {
-		this.route.data.subscribe(data => this.category = data.category);
+		this.route.data.subscribe(data => this.category = data.category !== undefined ? data.category : 'all');
 
-		this.categories = [
-			'Accessories',
-			'Jackets',
-			'Pants',
-			'Sneakers',
-			'Sweaters',
-			'T-Shirts',
-			'SALE'
-		];
+		this.categories = categories;
 
 		this.apparels$
 		    .takeUntil(this.ngUnsubscribe)
