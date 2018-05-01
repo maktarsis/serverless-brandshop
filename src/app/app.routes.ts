@@ -7,6 +7,7 @@ import {
 import { HomeComponent } from './home/home.component';
 import { ShopComponent } from './shop/shop.component';
 import { AuthComponent } from './components/auth/auth.component';
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 
 export const routes: Routes = [
 	{
@@ -21,6 +22,11 @@ export const routes: Routes = [
 	{
 		path: 'location',
 		loadChildren: 'app/location/location.module#LocationModule'
+	},
+	{
+		path: 'cart',
+		pathMatch: 'full',
+		component: ShoppingCartComponent
 	},
 	{
 		path: 'auth',
