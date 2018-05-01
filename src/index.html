@@ -8,21 +8,17 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <!--Google Maps Javascript API-->
+  <!-- <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=YOUR_API_KEY"></script> -->
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
   <link href="https://fonts.googleapis.com/css?family=Inknut+Antiqua" rel="stylesheet">
   <!--<link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">-->
   <!--<link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">-->
   <!--<link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">-->
-
 </head>
-
 <body>
-<script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
-<!--<script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-app.js"></script>-->
-<!--<script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-auth.js"></script>-->
-<!--<script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-database.js"></script>-->
-<!--<script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-firestore.js"></script>-->
-<!--<script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-messaging.js"></script>-->
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
 <script>
     // Initialize Firebase
     var config = {
@@ -34,6 +30,7 @@
         messagingSenderId: "1097258959081"
     };
     firebase.initializeApp(config);
+
 </script>
 <app-root></app-root>
 </body>

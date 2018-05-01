@@ -14,7 +14,6 @@ import {
 } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
 
-
 import 'rxjs/add/operator/takeUntil';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
@@ -32,27 +31,29 @@ export class ShopComponent implements OnInit, OnDestroy {
 	user;
 	collection;
 	public categories: string[];
-	public apparels: any[] = [];
+	public apparels: Apparels;
 	private ngUnsubscribe: Subject<boolean> = new Subject();
 
 	public apparelsCollection: AngularFirestoreDocument<Apparels>;
 	public apparels$: Observable<Apparels>;
 	public myApparels;
+	public category: any;
 
 	constructor(
 		private auth: AngularFireAuth,
 		private db: AngularFirestore,
 		private afs: AngularFirestore,
-		private shopService: ShopService
+		private shopService: ShopService,
+		private route: ActivatedRoute
 	) {
+		db.firestore.settings({ timestampsInSnapshots: true });
 		this.apparelsCollection = this.afs.collection('apparels').doc('all');
 		this.apparels$ = this.apparelsCollection.valueChanges();
 	}
 
 	public ngOnInit() {
-		// TODO: RESOLVER
-		// const categories1 = this.route.snapshot.data['category'];
-		// console.log(categories1);
+		this.route.data.subscribe(data => this.category = data.category);
+
 		this.categories = [
 			'Accessories',
 			'Jackets',
@@ -63,12 +64,12 @@ export class ShopComponent implements OnInit, OnDestroy {
 			'SALE'
 		];
 
-
 		this.apparels$
 		    .takeUntil(this.ngUnsubscribe)
-		    .subscribe(allApparels => {
+		    .subscribe((allApparels: Apparels) => {
+			    this.apparels = allApparels;
 			    const flattenApparels = Object.values(allApparels).map(apparels => apparels);
-			    this.apparels = [].concat.apply([], flattenApparels);
+			    this.apparels.all = [].concat.apply([], flattenApparels);
 		    });
 
 		// this.auth.authState.subscribe(user => {
@@ -108,5 +109,9 @@ export class ShopComponent implements OnInit, OnDestroy {
 	public ngOnDestroy(): void {
 		this.ngUnsubscribe.next();
 		this.ngUnsubscribe.complete();
+	}
+
+	public ss() {
+		console.log(this.category);
 	}
 }

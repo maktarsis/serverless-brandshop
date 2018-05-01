@@ -6,12 +6,12 @@ import {
 } from '@angular/router';
 
 @Injectable()
-export class ShopResolver implements Resolve<any> {
+export class ShopResolver implements Resolve<string> {
 
-	resolve(route: ActivatedRouteSnapshot,
-	        state: RouterStateSnapshot): any {
-		const category = route.paramMap.get('category');
-		console.log('resolver', category);
+	resolve(
+		route: ActivatedRouteSnapshot,
+		state: RouterStateSnapshot
+	): string {
 		return route.params.category;
 	}
 }

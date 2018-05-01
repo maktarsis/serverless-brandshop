@@ -11,6 +11,6 @@ export const environment = {
 		databaseURL: 'https://reignarrwear.firebaseio.com',
 		projectId: 'reignarrwear',
 		storageBucket: '',
-		messagingSenderId: '1097258959081',
-	},
+		messagingSenderId: '1097258959081'
+	}
 };

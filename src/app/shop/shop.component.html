@@ -6,9 +6,11 @@
         </li>
     </ul>
 
-    <shop-bar class="shop__bar" [categories]="categories"></shop-bar>
+    <shop-bar (click)="ss()" class="shop__bar" [categories]="categories"></shop-bar>
 
-    <shop-apparels class="shop__apparels" [apparels]="apparels"></shop-apparels>
+    <shop-apparels class="shop__apparels"
+                   *ngIf="apparels"
+                   [apparels]="apparels[category]"></shop-apparels>
 
 </div>
 

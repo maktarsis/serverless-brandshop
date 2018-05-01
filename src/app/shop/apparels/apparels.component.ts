@@ -1,4 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {
+	Component,
+	OnInit,
+	Input
+} from '@angular/core';
 import { Apparel } from '../interfaces/apparel.interface';
 
 @Component({
@@ -9,7 +13,8 @@ import { Apparel } from '../interfaces/apparel.interface';
 export class ApparelsComponent implements OnInit {
 	@Input() public apparels: Apparel[];
 
-	constructor() { }
+	constructor() {
+	}
 
 	ngOnInit() {
 	}

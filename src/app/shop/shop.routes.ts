@@ -19,11 +19,9 @@ export const routes: Routes = [
 	},
 	{
 		path: ':category',
+		resolve: { category: ShopResolver },
 		component: ShopComponent
-		// TODO: RESOLVER
-		// resolve: { category: ShopResolver }
 	}
-
 ];
 
 export const shopRouting: ModuleWithProviders = RouterModule.forChild(routes);
