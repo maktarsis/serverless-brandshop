@@ -19,7 +19,7 @@ import { Apparels } from './shared/apparels.interface';
 import { categories } from './shared/apparels.constants';
 
 @Component({
-	selector: 'app-shop',
+	selector: 'shop-root',
 	templateUrl: './shop.component.html',
 	styleUrls: ['./shop.component.scss']
 })
