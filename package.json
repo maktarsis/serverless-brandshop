@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:ssr": "ng build --prod && ng build --prod --app 1 --aot --output-hashing=none",
+    "build:ssr": "ng build --prod && ng build --prod --app=server --aot --output-hashing=none",
     "tsc:functions": "tsc -p server/tsconfig.functions.json",
     "firebase:deploy": "npm run build:ssr && npm run tsc:functions && firebase deploy",
     "firebase:deploy:hosting": "ng build --prod && firebase deploy --only hosting"
@@ -21,7 +21,7 @@
     "@angular/common": "5.2.10",
     "@angular/compiler": "5.2.10",
     "@angular/core": "5.2.10",
-    "@angular/flex-layout": "^5.0.0-beta.14",
+    "@angular/flex-layout": "5.0.0-beta.14",
     "@angular/forms": "5.2.10",
     "@angular/http": "5.2.10",
     "@angular/material": "^5.2.4",
