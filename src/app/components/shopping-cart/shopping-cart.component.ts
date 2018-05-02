@@ -34,8 +34,8 @@ export class ShoppingCartComponent implements OnInit {
 		this.cartService.deleteCartApparel(apparel);
 	}
 
-	public checkout(apparels: Apparel[], subtotal: number): void {
-		alert(`Do you want to buy this stuff for ${subtotal}?`);
+	public checkout(subtotal: number): void {
+		alert(`Do you want to buy this stuff for ${subtotal} bucks?`);
 	}
 
 	private calcSubtotal(apparels: Apparel[]): number {
