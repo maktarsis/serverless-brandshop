@@ -97,8 +97,4 @@ export class ShopComponent implements OnInit, OnDestroy {
 		this.ngUnsubscribe.next();
 		this.ngUnsubscribe.complete();
 	}
-
-	public ss() {
-		console.log(this.category);
-	}
 }

@@ -3,7 +3,8 @@
   flex-wrap: wrap;
 
   &__apparel {
-    height: 200px;
+    position: relative;
+    height: 250px;
     width: calc(100% / 3);
     display: flex;
     align-items: center;
@@ -14,4 +15,27 @@
     width: 150px;
     height: 225px;
   }
+
+  &__name {
+    position: absolute;
+    top: 5%;
+    font-style: italic;
+    font-size: 20px;
+  }
+
+  &__price {
+    position: absolute;
+    bottom: 10%;
+  }
+
+  &__add-cart {
+    cursor: pointer;
+  }
+}
+
+.icon {
+  position: relative;
+  top: 3px;
+  left: 10px;
+  font-size: 20px;
 }

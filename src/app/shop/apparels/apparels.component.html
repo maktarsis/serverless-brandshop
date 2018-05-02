@@ -1,7 +1,13 @@
 <section class="apparels">
   <div class="apparels__apparel" *ngFor="let apparel of apparels">
+    <p class="apparels__name">{{apparel.name}}</p>
     <img class="apparels__image" [src]="apparel.url" [alt]="apparel.name">
-    <p>{{ apparel.name }}</p>
+    <div class="apparels__price">
+      <span>{{apparel.price}} $</span>
+      <a class="apparels__add-cart" (click)="addToCart(apparel)">
+        <mat-icon class="icon">add_shopping_cart</mat-icon>
+      </a>
+    </div>
   </div>
 </section>
 

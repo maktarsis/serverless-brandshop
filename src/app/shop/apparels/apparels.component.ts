@@ -4,6 +4,7 @@ import {
 	Input
 } from '@angular/core';
 import { Apparel } from '../shared/apparel.interface';
+import { CartService } from '../../shared/cart.service';
 
 @Component({
 	selector: 'shop-apparels',
@@ -13,10 +14,13 @@ import { Apparel } from '../shared/apparel.interface';
 export class ApparelsComponent implements OnInit {
 	@Input() public apparels: Apparel[];
 
-	constructor() {
+	constructor(private cartService: CartService) {
 	}
 
 	ngOnInit() {
 	}
 
+	public addToCart(apparel: Apparel): void {
+		this.cartService.addCartApparel(apparel);
+	}
 }
