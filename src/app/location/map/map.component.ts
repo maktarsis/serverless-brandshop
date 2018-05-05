@@ -1,8 +1,8 @@
 import {
 	ChangeDetectionStrategy,
+	ChangeDetectorRef,
 	Component,
 	ElementRef,
-	NgZone,
 	OnInit
 } from '@angular/core';
 import { MapService } from '../shared/map.service';
@@ -16,50 +16,38 @@ import { GeocodingService } from '../shared/geocoding.service';
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MapComponent implements OnInit {
-	// Center map. Required.
-	center: google.maps.LatLng;
+	public center: google.maps.LatLng; // Center map. Required.
 	// MapOptions object specification.
 	// The initial map zoom level. Required.
-	zoom: number;
-
-	disableDefaultUI: boolean;
-	disableDoubleClickZoom: boolean;
-	mapTypeId: google.maps.MapTypeId;
-	maxZoom: number;
-	minZoom: number;
-	styles: google.maps.MapTypeStyle[];
-
-	// Marker position. Required.
-	position: google.maps.LatLng;
-
-	// Marker title.
-	title: string;
-
-	// Info window.
-	content: string;
-
-	// Address to be searched.
-	address: string;
-
-	// Warning flag & message.
-	warning: boolean;
-	message: string;
+	public zoom: number;
+	public disableDefaultUI: boolean;
+	public disableDoubleClickZoom: boolean;
+	public mapTypeId: google.maps.MapTypeId;
+	public maxZoom: number;
+	public minZoom: number;
+	public styles: google.maps.MapTypeStyle[];
+	public position: google.maps.LatLng; // Marker position. Required.
+	public title: string; // Marker title.
+	public content: string; // Info window.
+	public address: string; // Address to be searched.
+	public warning: boolean; // Warning flag
+	public message: string; // Warning message.
 
 	constructor(
-		private ngZone: NgZone,
 		private elementRef: ElementRef,
 		private map: MapService,
 		private geolocation: GeolocationService,
-		private geocoding: GeocodingService
+		private geocoding: GeocodingService,
+		private cdr: ChangeDetectorRef
 	) {
 		this.center = new google.maps.LatLng(41.910943, 12.476358);
-		this.zoom = 4;
+		this.zoom = 15;
 
 		// Other options.
 		this.disableDefaultUI = true;
 		this.disableDoubleClickZoom = false;
 		this.mapTypeId = google.maps.MapTypeId.ROADMAP;
-		this.maxZoom = 15;
+		this.maxZoom = 30;
 		this.minZoom = 4;
 		// Styled Maps: https://developers.google.com/maps/documentation/javascript/styling
 		this.styles = [
@@ -85,17 +73,18 @@ export class MapComponent implements OnInit {
 			types: ['address']
 		});
 		autocomplete.addListener('place_changed', () => {
-			this.ngZone.run(() => {
-				const place: google.maps.places.PlaceResult = autocomplete.getPlace();
-				if (place.geometry === undefined || place.geometry === null) {
-					return;
-				}
-				// New center object: triggers OnChanges.
-				this.center = new google.maps.LatLng(place.geometry.location.lat(), place.geometry.location.lng());
-				this.zoom = 11;
-				this.setMarker(this.center, 'search result', place.formatted_address);
-			});
+			const place: google.maps.places.PlaceResult = autocomplete.getPlace();
+			if (place.geometry === undefined || place.geometry === null) {
+				return;
+			}
+			// New center object: triggers OnChanges.
+			this.center = new google.maps.LatLng(place.geometry.location.lat(), place.geometry.location.lng());
+			this.zoom = 17;
+			this.setMarker(this.center, 'search result', place.formatted_address);
+			this.cdr.detectChanges(); // TODO: FIGURE OUT!
 		});
+
+		this.getCurrentPosition();
 	}
 
 	getCurrentPosition(): void {
@@ -103,19 +92,18 @@ export class MapComponent implements OnInit {
 		this.message = '';
 
 		if (navigator.geolocation) {
-			this.geolocation.getCurrentPosition().subscribe(
-				(position: Position) => {
+			this.geolocation.getCurrentPosition().subscribe((position: Position) => {
 					if (this.center.lat() !== position.coords.latitude &&
 						this.center.lng() !== position.coords.longitude) {
 						// New center object: triggers OnChanges.
 						this.center = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-						this.zoom = 11;
+						this.zoom = 18;
 
 						// Translates the location into address.
-						this.geocoding.geocode(this.center).forEach(
-							(results: google.maps.GeocoderResult[]) => {
-								this.setMarker(this.center, 'your locality', results[0].formatted_address);
-							})
+						this.geocoding.geocode(this.center).forEach((results: google.maps.GeocoderResult[]) => {
+							this.setMarker(this.center, 'your locality', results[0].formatted_address);
+							this.cdr.markForCheck();
+						})
 						    .then(() => console.log('Geocoding service: completed.'))
 						    .catch((error: google.maps.GeocoderStatus) => {
 							    if (error === google.maps.GeocoderStatus.ZERO_RESULTS) {
@@ -123,6 +111,8 @@ export class MapComponent implements OnInit {
 								    this.warning = true;
 							    }
 						    });
+
+						this.cdr.markForCheck();
 					}
 				},
 				(error: PositionError) => {
@@ -150,7 +140,7 @@ export class MapComponent implements OnInit {
 	}
 
 	search(address: string): void {
-		if (address != '') {
+		if (address !== '') {
 			this.warning = false;
 			this.message = '';
 			// Converts the address into geographic coordinates.
@@ -163,7 +153,7 @@ export class MapComponent implements OnInit {
 							results[0].geometry.location.lat(),
 							results[0].geometry.location.lng()
 						);
-						this.zoom = 11;
+						this.zoom = 18;
 
 						this.setMarker(this.center, 'search result', results[0].formatted_address);
 					}

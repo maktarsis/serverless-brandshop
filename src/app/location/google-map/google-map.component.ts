@@ -5,7 +5,6 @@ import {
 	OnChanges,
 	SimpleChange,
 	ElementRef,
-	ViewChild,
 	ChangeDetectionStrategy
 } from '@angular/core';
 
@@ -31,7 +30,7 @@ export class GoogleMapComponent implements OnInit, OnChanges {
 	}
 
 	public ngOnInit(): void {
-		const el: HTMLElement = this.elementRef.nativeElement.querySelector('#map');
+		const el: HTMLElement = this.elementRef.nativeElement.querySelector('#gmap');
 		this.createMap(el);
 	}
 

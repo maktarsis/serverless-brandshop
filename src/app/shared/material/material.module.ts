@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import {
 	MatIconModule,
 	MatDialogModule,
-	MatButtonModule
+	MatButtonModule,
+	MatInputModule
 } from '@angular/material';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -11,6 +12,7 @@ const modules = [
 	MatIconModule,
 	MatDialogModule,
 	MatButtonModule,
+	MatInputModule,
 	FlexLayoutModule
 ];
 

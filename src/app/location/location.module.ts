@@ -11,12 +11,14 @@ import { GeocodingService } from './shared/geocoding.service';
 import { MapComponent } from './map/map.component';
 import { LocationResolver } from './location.resolver';
 import { StocklistsComponent } from './stocklists/stocklists.component';
+import { MaterialModule } from '../shared/material/material.module';
 
 @NgModule({
 	imports: [
 		CommonModule,
 		FormsModule,
-		locationRouting
+		locationRouting,
+		MaterialModule
 	],
 	declarations: [
 		GoogleMapComponent,

@@ -1,54 +1,40 @@
-<header>
-  <nav class="navbar navbar-default">
-    <div class="container">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#">Angular Maps</a>
-      </div>
+<main class="map">
+  <!--these properties are required: center, zoom-->
+  <location-google-map [center]="center"
+                       [zoom]="zoom"
+                       [disableDefaultUI]="disableDefaultUI"
+                       [disableDoubleClickZoom]="disableDoubleClickZoom"
+                       [mapTypeId]="mapTypeId"
+                       [maxZoom]="maxZoom" [minZoom]="minZoom" [styles]="styles"
+                       class="map__gmap">
+    <!--this property is required: position-->
+    <div googleMapMarker
+         [position]="position"
+         [title]="title"
+         [content]="content">
     </div>
-  </nav>
-</header>
+  </location-google-map>
 
-<main>
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="alert alert-warning alert-dismissible" role="alert" *ngIf="warning">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-              aria-hidden="true">&times;</span></button>
-          <strong>Warning!</strong> {{ message }}
-        </div>
+  <div class="map__navigation">
+    <div class="map__navigation-search">
+      <mat-form-field class="map__navigation search-input">
+        <input matInput placeholder="Address" id="input-search" [(ngModel)]="address" (keyup.enter)="search(address)">
+      </mat-form-field>
 
-        <!--these properties are required: center, zoom-->
-        <location-google-map [center]="center"
-                             [zoom]="zoom"
-                             [disableDefaultUI]="disableDefaultUI"
-                             [disableDoubleClickZoom]="disableDoubleClickZoom"
-                             [mapTypeId]="mapTypeId" [maxZoom]="maxZoom" [minZoom]="minZoom" [styles]="styles">
-          <!--this property is required: position-->
-          <div googleMapMarker [position]="position" [title]="title" [content]="content">
-          </div>
-        </location-google-map>
-
-        <br>
-
-        <div class="form-group">
-          <label class="control-label" for="input-search">Address</label>
-          <div class="input-group">
-            <input type="text" id="input-search" class="form-control" [(ngModel)]="address"
-                   (keyup.enter)="search(address)" placeholder="Address">
-            <div class="input-group-btn">
-              <button type="button" class="btn btn-fab btn-fab-mini" title="search" (click)="search(address)">
-                <span class="glyphicon glyphicon-search" aria-hidden="true">Search</span>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <button class="btn btn-default btn-block"
-                (click)="getCurrentPosition()">
-          Get current position
-        </button>
-      </div>
+      <button class="map__navigation search-button" mat-raised-button color="primary" (click)="search(address)">Search</button>
     </div>
+
+    <div>
+      <button class="map__navigation current-button" mat-raised-button color="primary" (click)="getCurrentPosition()">Get current position</button>
+    </div>
+  </div>
+
+
+  <div class="alert alert-warning alert-dismissible" role="alert" *ngIf="warning">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <strong>Warning!</strong>
+    {{ message }}
   </div>
 </main>

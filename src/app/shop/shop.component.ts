@@ -62,7 +62,7 @@ export class ShopComponent implements OnInit, OnDestroy {
 			    this.apparels = allApparels;
 			    const flattenApparels = Object.values(allApparels).map(apparels => apparels);
 			    this.apparels.all = [].concat.apply([], flattenApparels);
-			    setTimeout(() => this.cdr.markForCheck(), 0);
+			    this.cdr.markForCheck();
 		    });
 
 		// this.auth.authState.subscribe(user => {

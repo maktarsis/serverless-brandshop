@@ -19,14 +19,14 @@ export class MapService {
 	}
 
 	public setCenter(latLng: google.maps.LatLng): void {
-		if (this.map != null && latLng != null) {
+		if (this.map !== null && this.map !== undefined && latLng !== null) {
 			// Changes the center of the map to the given LatLng.
 			this.map.panTo(latLng);
 		}
 	}
 
 	public setZoom(zoom: number): void {
-		if (this.map != null) {
+		if (this.map !== null && this.map !== undefined) {
 			this.map.setZoom(zoom);
 		}
 	}
