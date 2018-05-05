@@ -4,5 +4,5 @@ export interface Apparels {
 	all?: Apparel[];
 	accessories: Apparel[];
 	sneakers: Apparel[];
-	tshirts: Apparel[];
+	't-shirts': Apparel[];
 }

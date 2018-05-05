@@ -1,6 +1,5 @@
 import {
 	Component,
-	OnInit,
 	Input,
 	ChangeDetectionStrategy
 } from '@angular/core';
@@ -13,13 +12,10 @@ import { CartService } from '../../shared/cart.service';
 	styleUrls: ['./apparels.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ApparelsComponent implements OnInit {
+export class ApparelsComponent {
 	@Input() public apparels: Apparel[];
 
 	constructor(private cartService: CartService) {
-	}
-
-	ngOnInit() {
 	}
 
 	public addToCart(apparel: Apparel): void {

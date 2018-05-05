@@ -15,7 +15,11 @@
     </div>
 
     <p class="shopping-cart__subtotal">Subtotal: {{subtotal.toFixed(2)}} $</p>
-    <button type="button" class="shopping-cart__checkout" (click)="checkout(subtotal)">Checkout</button>
+
+    <button mat-button class="shopping-cart__checkout"
+            (click)="checkout(subtotal)">
+      Checkout
+    </button>
   </ng-container>
 
   <ng-template #empty>

@@ -1,16 +1,11 @@
 <div class="container shop">
 
-    <ul *ngFor="let apparel of myApparels">
-        <li>
-            {{ apparel.title }}
-        </li>
-    </ul>
+  <shop-bar class="shop__bar" [categories]="categories"></shop-bar>
 
-    <shop-bar class="shop__bar" [categories]="categories"></shop-bar>
+  <shop-apparels class="shop__apparels"
+                 *ngIf="apparels"
+                 [apparels]="apparels[category]">
 
-    <shop-apparels class="shop__apparels"
-                   *ngIf="apparels"
-                   [apparels]="apparels[category]"></shop-apparels>
-
+  </shop-apparels>
 </div>
 

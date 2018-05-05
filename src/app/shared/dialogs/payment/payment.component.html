@@ -1,3 +1,26 @@
-<p>
-  payment works!
-</p>
+<div class="payment">
+  <header>
+    <p class="payment__header">Please, fill the form</p>
+    <p class="payment__subheader">We will contact you soon</p>
+  </header>
+
+  <form class="payment__form" [formGroup]="form" (ngSubmit)="payment(form)">
+    <div class="payment__form-controls">
+      <mat-form-field>
+        <input matInput placeholder="Full name" formControlName="name">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Phone number" formControlName="phone">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="E-Mail" formControlName="email">
+      </mat-form-field>
+    </div>
+
+    <button mat-raised-button color="primary">
+      Submit
+    </button>
+  </form>
+</div>
+
+

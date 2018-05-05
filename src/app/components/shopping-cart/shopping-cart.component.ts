@@ -1,11 +1,15 @@
 import {
 	ChangeDetectionStrategy,
 	Component,
+	OnDestroy,
 	OnInit
 } from '@angular/core';
 import { CartService } from '../../shared/cart.service';
 import { Apparel } from '../../shop/shared/apparel.interface';
 import { MatDialog } from '@angular/material';
+import { PaymentComponent } from '../../shared/dialogs/payment/payment.component';
+import { Contact } from '../../shared/interfaces/contact.interface';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-shopping-cart',
@@ -13,45 +17,47 @@ import { MatDialog } from '@angular/material';
 	styleUrls: ['./shopping-cart.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ShoppingCartComponent implements OnInit {
+export class ShoppingCartComponent implements OnInit, OnDestroy {
 	public cartApparels: Apparel[];
 	public subtotal: number;
+	private subscription: any;
+	private contact: Contact;
 
 	constructor(
 		private cartService: CartService,
-		private dialog: MatDialog
+		private dialog: MatDialog,
+		private router: Router
 	) {
 	}
 
-	ngOnInit() {
-		this.cartService.cartApparels$.subscribe((apparels: Apparel[]) => {
+	public ngOnInit(): void {
+		this.subscription = this.cartService.cartApparels$.subscribe((apparels: Apparel[]) => {
 			this.cartApparels = apparels;
 			this.subtotal = this.calcSubtotal(apparels);
 		});
 	}
 
 	public deleteCartApparel(apparel: Apparel): void {
-		const decision = confirm('Are you really want to delete this stuff?');
-
-		if (!decision) {
-			return;
-		}
-
 		this.cartService.deleteCartApparel(apparel);
 	}
 
 	public checkout(subtotal: number): void {
-		alert(`Do you want to buy this stuff for ${subtotal} bucks?`);
+		const dialogRef = this.dialog.open(PaymentComponent, {
+			height: '500px',
+			width: '600px'
+		});
+
+		dialogRef.afterClosed().subscribe((contact: Contact) => {
+			this.contact = contact;
+			this.router.navigate(['']);
+		});
 	}
 
 	private calcSubtotal(apparels: Apparel[]): number {
-		if (apparels.length === 0) {
-			return;
-		}
+		return apparels.reduce((result: number, apparel: Apparel) => result + apparel.price, 0);
+	}
 
-		let sum = 0;
-		apparels.forEach((apparel: Apparel) => sum += apparel.price);
-
-		return sum;
+	public ngOnDestroy(): void {
+		this.subscription.unsubscribe();
 	}
 }

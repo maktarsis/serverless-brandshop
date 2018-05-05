@@ -17,7 +17,6 @@ import 'rxjs/add/operator/takeUntil';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
-import { ShopService } from './shop.service';
 import { Apparels } from './shared/apparels.interface';
 import { categories } from './shared/apparels.constants';
 
@@ -32,12 +31,10 @@ export class ShopComponent implements OnInit, OnDestroy {
 	collection;
 	public categories: string[];
 	public apparels: Apparels;
-	private ngUnsubscribe: Subject<boolean> = new Subject();
-
+	public category: string;
 	public apparelsCollection: AngularFirestoreDocument<Apparels>;
 	public apparels$: Observable<Apparels>;
-	public myApparels;
-	public category: any;
+	private ngUnsubscribe: Subject<boolean> = new Subject();
 
 	constructor(
 		private auth: AngularFireAuth,
@@ -49,21 +46,26 @@ export class ShopComponent implements OnInit, OnDestroy {
 		db.firestore.settings({ timestampsInSnapshots: true });
 		this.apparelsCollection = this.afs.collection('apparels').doc('all');
 		this.apparels$ = this.apparelsCollection.valueChanges();
+
 	}
 
 	public ngOnInit() {
-		this.route.data.subscribe(data => this.category = data.category !== undefined ? data.category : 'all');
+		this.route.data
+			.takeUntil(this.ngUnsubscribe)
+			.subscribe(data => {
+				this.category = data.category !== undefined ? data.category : 'all';
+			});
 
 		this.categories = categories;
 
 		this.apparels$
-		    .takeUntil(this.ngUnsubscribe)
-		    .subscribe((allApparels: Apparels) => {
-			    this.apparels = allApparels;
-			    const flattenApparels = Object.values(allApparels).map(apparels => apparels);
-			    this.apparels.all = [].concat.apply([], flattenApparels);
-			    this.cdr.markForCheck();
-		    });
+			.takeUntil(this.ngUnsubscribe)
+			.subscribe((allApparels: Apparels) => {
+				this.apparels = allApparels;
+				const flattenApparels = Object.values(allApparels).map(apparels => apparels);
+				this.apparels.all = [].concat.apply([], flattenApparels);
+				this.cdr.markForCheck();
+			});
 
 		// this.auth.authState.subscribe(user => {
 		// 	if (user) {
