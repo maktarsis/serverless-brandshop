@@ -2,7 +2,6 @@ import {
 	ChangeDetectionStrategy,
 	Component
 } from '@angular/core';
-import {} from '@types/googlemaps';
 
 @Component({
 	selector: 'location-root',
@@ -11,5 +10,4 @@ import {} from '@types/googlemaps';
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LocationComponent {
-
 }

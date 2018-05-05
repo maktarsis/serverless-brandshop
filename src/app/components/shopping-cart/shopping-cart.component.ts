@@ -5,6 +5,7 @@ import {
 } from '@angular/core';
 import { CartService } from '../../shared/cart.service';
 import { Apparel } from '../../shop/shared/apparel.interface';
+import { MatDialog } from '@angular/material';
 
 @Component({
 	selector: 'app-shopping-cart',
@@ -16,7 +17,10 @@ export class ShoppingCartComponent implements OnInit {
 	public cartApparels: Apparel[];
 	public subtotal: number;
 
-	constructor(private cartService: CartService) {
+	constructor(
+		private cartService: CartService,
+		private dialog: MatDialog
+	) {
 	}
 
 	ngOnInit() {

@@ -17,11 +17,11 @@ import {
 })
 export class FooterComponent {
 
-	constructor(public dialog: MatDialog) {
+	constructor(private dialog: MatDialog) {
 	}
 
 	public openShippingHandling(): void {
-		const dialogRef = this.dialog.open(OrdersComponent, {
+		this.dialog.open(OrdersComponent, {
 			height: '500px',
 			width: '600px',
 			data: shippingHandling
@@ -29,7 +29,7 @@ export class FooterComponent {
 	}
 
 	public openReturnPolicy(): void {
-		const dialogRef = this.dialog.open(OrdersComponent, {
+		this.dialog.open(OrdersComponent, {
 			height: '500px',
 			width: '600px',
 			data: returnPolicy
