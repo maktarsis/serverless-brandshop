@@ -8,6 +8,7 @@ import {
 import { MapService } from '../shared/map.service';
 import { GeolocationService } from '../shared/geolocation.service';
 import { GeocodingService } from '../shared/geocoding.service';
+import {} from '@types/googlemaps';
 
 @Component({
 	selector: 'location-map',
@@ -104,13 +105,13 @@ export class MapComponent implements OnInit {
 							this.setMarker(this.center, 'your locality', results[0].formatted_address);
 							this.cdr.markForCheck();
 						})
-						    .then(() => console.log('Geocoding service: completed.'))
-						    .catch((error: google.maps.GeocoderStatus) => {
-							    if (error === google.maps.GeocoderStatus.ZERO_RESULTS) {
-								    this.message = 'zero results';
-								    this.warning = true;
-							    }
-						    });
+							.then(() => console.log('Geocoding service: completed.'))
+							.catch((error: google.maps.GeocoderStatus) => {
+								if (error === google.maps.GeocoderStatus.ZERO_RESULTS) {
+									this.message = 'zero results';
+									this.warning = true;
+								}
+							});
 
 						this.cdr.markForCheck();
 					}
@@ -158,16 +159,16 @@ export class MapComponent implements OnInit {
 						this.setMarker(this.center, 'search result', results[0].formatted_address);
 					}
 				})
-			    .then(() => {
-				    this.address = '';
-				    console.log('Geocoding service: completed.');
-			    })
-			    .catch((error: google.maps.GeocoderStatus) => {
-				    if (error === google.maps.GeocoderStatus.ZERO_RESULTS) {
-					    this.message = 'zero results';
-					    this.warning = true;
-				    }
-			    });
+				.then(() => {
+					this.address = '';
+					console.log('Geocoding service: completed.');
+				})
+				.catch((error: google.maps.GeocoderStatus) => {
+					if (error === google.maps.GeocoderStatus.ZERO_RESULTS) {
+						this.message = 'zero results';
+						this.warning = true;
+					}
+				});
 		}
 	}
 
