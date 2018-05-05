@@ -1,7 +1,8 @@
 import {
 	Component,
 	OnInit,
-	Input
+	Input,
+	ChangeDetectionStrategy
 } from '@angular/core';
 import { Apparel } from '../shared/apparel.interface';
 import { CartService } from '../../shared/cart.service';
@@ -9,7 +10,8 @@ import { CartService } from '../../shared/cart.service';
 @Component({
 	selector: 'shop-apparels',
 	templateUrl: './apparels.component.html',
-	styleUrls: ['./apparels.component.scss']
+	styleUrls: ['./apparels.component.scss'],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ApparelsComponent implements OnInit {
 	@Input() public apparels: Apparel[];

@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {
+	ChangeDetectionStrategy,
+	Component,
+	OnInit
+} from '@angular/core';
 
 import { Router } from '@angular/router';
 import { AngularFirestore } from 'angularfire2/firestore';
@@ -9,6 +13,7 @@ import * as firebase from 'firebase/app';
 	selector: 'app-auth',
 	templateUrl: './auth.component.html',
 	styleUrls: ['./auth.component.scss'],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AuthComponent implements OnInit {
 

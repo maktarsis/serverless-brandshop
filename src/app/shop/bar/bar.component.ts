@@ -1,14 +1,16 @@
 import {
 	Component,
 	OnInit,
-	Input
+	Input,
+	ChangeDetectionStrategy
 } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
 	selector: 'shop-bar',
 	templateUrl: './bar.component.html',
-	styleUrls: ['./bar.component.scss']
+	styleUrls: ['./bar.component.scss'],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BarComponent implements OnInit {
 	@Input() public categories: string[];

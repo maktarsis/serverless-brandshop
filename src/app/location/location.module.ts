@@ -8,6 +8,10 @@ import { MarkerDirective } from './shared/marker.directive';
 import { MapService } from './shared/map.service';
 import { GeolocationService } from './shared/geolocation.service';
 import { GeocodingService } from './shared/geocoding.service';
+import { ContactsComponent } from './contacts/contacts.component';
+import { MapComponent } from './map/map.component';
+import { LocationResolver } from './location.resolver';
+import { StocklistsComponent } from './stocklists/stocklists.component';
 
 @NgModule({
 	imports: [
@@ -18,12 +22,16 @@ import { GeocodingService } from './shared/geocoding.service';
 	declarations: [
 		GoogleMapComponent,
 		LocationComponent,
-		MarkerDirective
+		MarkerDirective,
+		ContactsComponent,
+		MapComponent,
+		StocklistsComponent
 	],
 	providers: [
 		MapService,
 		GeolocationService,
-		GeocodingService
+		GeocodingService,
+		LocationResolver
 	]
 })
 export class LocationModule {

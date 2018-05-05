@@ -1,9 +1,12 @@
 import {
 	Component,
 	OnInit,
-	OnDestroy
+	OnDestroy,
+	ChangeDetectorRef,
+	ChangeDetectionStrategy
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+
 import {
 	AngularFirestore,
 	AngularFirestoreDocument
@@ -21,7 +24,8 @@ import { categories } from './shared/apparels.constants';
 @Component({
 	selector: 'shop-root',
 	templateUrl: './shop.component.html',
-	styleUrls: ['./shop.component.scss']
+	styleUrls: ['./shop.component.scss'],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ShopComponent implements OnInit, OnDestroy {
 	user;
@@ -39,7 +43,8 @@ export class ShopComponent implements OnInit, OnDestroy {
 		private auth: AngularFireAuth,
 		private db: AngularFirestore,
 		private afs: AngularFirestore,
-		private route: ActivatedRoute
+		private route: ActivatedRoute,
+		private cdr: ChangeDetectorRef
 	) {
 		db.firestore.settings({ timestampsInSnapshots: true });
 		this.apparelsCollection = this.afs.collection('apparels').doc('all');
@@ -57,6 +62,7 @@ export class ShopComponent implements OnInit, OnDestroy {
 			    this.apparels = allApparels;
 			    const flattenApparels = Object.values(allApparels).map(apparels => apparels);
 			    this.apparels.all = [].concat.apply([], flattenApparels);
+			    setTimeout(() => this.cdr.markForCheck(), 0);
 		    });
 
 		// this.auth.authState.subscribe(user => {
@@ -67,6 +73,7 @@ export class ShopComponent implements OnInit, OnDestroy {
 		//
 		// 	this.router.navigate(['']);
 		// });
+
 	}
 
 	public logout() {

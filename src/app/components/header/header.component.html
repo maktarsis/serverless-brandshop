@@ -3,21 +3,19 @@
     <a class="header__brandname" routerLink="/">Reignarr</a>
   </section>
 
-  <!-- Todo: router events -->
   <section class="header__nav">
-    <!--[ngStyle]="{'color': router.url === '/' ? '#ebebeb' : 'black'}"-->
     <div class="header__nav-main">
       <a routerLink="/">Home</a>
       <a>Lookbook</a>
       <a routerLink="/shop">Shop</a>
       <a routerLink="/cart">
-        <mat-icon class="icon">shopping_cart</mat-icon>
+        <mat-icon>shopping_cart</mat-icon>
       </a>
     </div>
     <div class="header__nav-main">
       <a>Blog</a>
-      <a routerLink="/location">Store Location</a>
-      <a>Stocklists</a>
+      <a routerLink="location">Store Location</a>
+      <a routerLink="location/stocklists">Stocklists</a>
     </div>
   </section>
 </header>

@@ -5,12 +5,26 @@ import {
 } from '@angular/router';
 
 import { LocationComponent } from './location.component';
+import { MapComponent } from './map/map.component';
+import { LocationResolver } from './location.resolver';
+import { StocklistsComponent } from './stocklists/stocklists.component';
+import { ContactsComponent } from './contacts/contacts.component';
 
 export const routes: Routes = [
 	{
 		path: '',
 		pathMatch: 'full',
-		component: LocationComponent
+		component: MapComponent
+	},
+	{
+		path: 'contacts',
+		pathMatch: 'full',
+		component: ContactsComponent
+	},
+	{
+		path: 'stocklists',
+		pathMatch: 'full',
+		component: StocklistsComponent
 	}
 ];
 

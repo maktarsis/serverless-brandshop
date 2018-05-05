@@ -5,7 +5,8 @@ import {
 	OnChanges,
 	SimpleChange,
 	ElementRef,
-	ViewChild
+	ViewChild,
+	ChangeDetectionStrategy
 } from '@angular/core';
 
 import { MapService } from '../shared/map.service';
@@ -13,7 +14,8 @@ import { MapService } from '../shared/map.service';
 @Component({
 	selector: 'location-google-map',
 	templateUrl: 'google-map.component.html',
-	styleUrls: ['google-map.component.scss']
+	styleUrls: ['google-map.component.scss'],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GoogleMapComponent implements OnInit, OnChanges {
 	@Input() center: google.maps.LatLng; // Center map. Required.

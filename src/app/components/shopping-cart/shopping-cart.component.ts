@@ -1,4 +1,5 @@
 import {
+	ChangeDetectionStrategy,
 	Component,
 	OnInit
 } from '@angular/core';
@@ -8,7 +9,8 @@ import { Apparel } from '../../shop/shared/apparel.interface';
 @Component({
 	selector: 'app-shopping-cart',
 	templateUrl: './shopping-cart.component.html',
-	styleUrls: ['./shopping-cart.component.scss']
+	styleUrls: ['./shopping-cart.component.scss'],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ShoppingCartComponent implements OnInit {
 	public cartApparels: Apparel[];
