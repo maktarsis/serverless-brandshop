@@ -1,12 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MaterialModule } from './material/material.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-const sharedModules = [CommonModule, MaterialModule];
+import { MaterialModule } from './material/material.module';
+import { OrdersComponent } from './dialogs/orders/orders.component';
+import { CartService } from './cart.service';
+
+const sharedModules = [CommonModule, MaterialModule, BrowserAnimationsModule];
 
 @NgModule({
 	imports: sharedModules,
 	exports: sharedModules,
+	declarations: [OrdersComponent],
+	entryComponents: [OrdersComponent],
+	providers: [CartService]
 })
 export class SharedModule {
 }

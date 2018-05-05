@@ -21,16 +21,9 @@ import { FooterComponent } from './components/footer/footer.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { environment } from '../environments/environment';
-import { CartService } from './shared/cart.service';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
-	declarations: [
-		AppComponent,
-		HeaderComponent,
-		FooterComponent,
-		AuthComponent,
-		ShoppingCartComponent
-	],
 	imports: [
 		BrowserModule.withServerTransition({ appId: 'app-root' }),
 		BrowserTransferStateModule,
@@ -43,10 +36,18 @@ import { CartService } from './shared/cart.service';
 		HttpClientModule,
 		MaterialModule,
 		appRouting,
-		HomeModule
+		HomeModule,
+		SharedModule
 	],
-	providers: [CartService],
-	bootstrap: [AppComponent]
+	declarations: [
+		AppComponent,
+		HeaderComponent,
+		FooterComponent,
+		AuthComponent,
+		ShoppingCartComponent,
+	],
+	bootstrap: [AppComponent],
+	providers: []
 })
 export class AppModule {
 }
