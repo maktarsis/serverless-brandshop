@@ -1,7 +1,7 @@
 .shopping-cart {
   display: flex;
   flex-direction: column;
-  margin: 175px;
+  margin: 175px 0 0 auto;
   width: 1000px;
 
   &__header {
