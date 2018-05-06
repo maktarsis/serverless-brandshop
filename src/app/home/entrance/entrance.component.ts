@@ -1,7 +1,6 @@
 import {
 	ChangeDetectionStrategy,
-	Component,
-	OnInit
+	Component
 } from '@angular/core';
 
 @Component({
@@ -10,12 +9,5 @@ import {
 	styleUrls: ['./entrance.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class EntranceComponent implements OnInit {
-
-	constructor() {
-	}
-
-	ngOnInit() {
-	}
-
+export class EntranceComponent {
 }

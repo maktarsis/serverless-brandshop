@@ -5,7 +5,7 @@ import {
 
 
 @Component({
-	selector: 'home-feat',
+	selector: 'home-root',
 	templateUrl: './home.component.html',
 	styleUrls: ['./home.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush

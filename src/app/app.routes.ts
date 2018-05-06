@@ -4,16 +4,13 @@ import {
 	Routes
 } from '@angular/router';
 
-import { HomeComponent } from './home/home.component';
-import { ShopComponent } from './shop/shop.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 
 export const routes: Routes = [
 	{
 		path: '',
-		pathMatch: 'full',
-		component: HomeComponent
+		loadChildren: 'app/home/home.module#HomeModule'
 	},
 	{
 		path: 'shop',

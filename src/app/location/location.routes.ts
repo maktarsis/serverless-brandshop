@@ -4,9 +4,7 @@ import {
 	Routes
 } from '@angular/router';
 
-import { LocationComponent } from './location.component';
 import { MapComponent } from './map/map.component';
-import { LocationResolver } from './location.resolver';
 import { StocklistsComponent } from './stocklists/stocklists.component';
 
 export const routes: Routes = [

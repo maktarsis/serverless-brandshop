@@ -17,7 +17,12 @@ import { FooterComponent } from '../components/footer/footer.component';
 		shopRouting,
 		MaterialModule
 	],
-	declarations: [ShopComponent, BarComponent, ApparelsComponent, FooterComponent],
+	declarations: [
+		ShopComponent,
+		BarComponent,
+		ApparelsComponent,
+		FooterComponent
+	],
 	providers: [
 		ShopResolver
 	]
