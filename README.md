@@ -1,5 +1,5 @@
-# Serverless brandshop "Reignarr" project
+# REIGNARR CONCEPT SHOP
 
-## Currently in development mode!
+## Currently is MVP
 
-## Project description will be here in near future
+### The documentation will be written in June

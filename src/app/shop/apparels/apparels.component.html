@@ -4,10 +4,10 @@
     <img class="apparels__image" [src]="apparel.url" [alt]="apparel.name">
     <div class="apparels__price">
       <span>{{apparel.price}} $</span>
-      <a class="apparels__add-cart" (click)="addToCart(apparel)">
+      <a class="apparels__add-cart" matTooltip="Add to cart" matTooltipPosition="after" (click)="addToCart(apparel)">
         <mat-icon class="icon">add_shopping_cart</mat-icon>
       </a>
     </div>
   </div>
-</section>
 
+</section>

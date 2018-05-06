@@ -85,10 +85,21 @@ export class MapComponent implements OnInit {
 			this.cdr.detectChanges(); // TODO: FIGURE OUT!
 		});
 
-		this.getCurrentPosition();
+		this.storeLocation();
 	}
 
-	getCurrentPosition(): void {
+	public storeLocation(): void {
+		const position = {
+			lat: 50.43861099999999,
+			lng: 30.52305590000003
+		};
+		this.center = new google.maps.LatLng(position.lat, position.lng);
+		this.zoom = 18;
+
+		this.setMarker(this.center, 'locality', 'store');
+	}
+
+	public getCurrentPosition(): void {
 		this.warning = false;
 		this.message = '';
 
@@ -140,7 +151,7 @@ export class MapComponent implements OnInit {
 		}
 	}
 
-	search(address: string): void {
+	public search(address: string): void {
 		if (address !== '') {
 			this.warning = false;
 			this.message = '';
@@ -173,7 +184,7 @@ export class MapComponent implements OnInit {
 	}
 
 	// Sets the marker & the info window.
-	setMarker(latLng: google.maps.LatLng, title: string, content: string): void {
+	private setMarker(latLng: google.maps.LatLng, title: string, content: string): void {
 		this.map.deleteMarkers();
 		// Sets the marker.
 		this.position = latLng;

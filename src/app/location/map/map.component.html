@@ -21,12 +21,21 @@
         <input matInput placeholder="Address" id="input-search" [(ngModel)]="address" (keyup.enter)="search(address)">
       </mat-form-field>
 
-      <button class="map__navigation search-button" mat-raised-button color="primary" (click)="search(address)">Search</button>
+      <button class="map__navigation search-button" mat-raised-button color="primary" (click)="search(address)">
+        Search
+      </button>
+    </div>
+    <div>
+      <button class="map__navigation position-button" mat-raised-button color="primary" (click)="storeLocation()">
+        REIGNARR
+      </button>
+    </div>
+    <div>
+      <button class="map__navigation position-button" mat-raised-button color="primary" (click)="getCurrentPosition()">
+        Current place
+      </button>
     </div>
 
-    <div>
-      <button class="map__navigation current-button" mat-raised-button color="primary" (click)="getCurrentPosition()">Get current position</button>
-    </div>
   </div>
 
 

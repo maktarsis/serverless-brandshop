@@ -2,10 +2,14 @@
 
   <shop-bar class="shop__bar" [categories]="categories"></shop-bar>
 
-  <shop-apparels class="shop__apparels"
-                 *ngIf="apparels"
-                 [apparels]="apparels[category]">
+    <shop-apparels class="shop__apparels"
+                   *ngIf="apparels; else loading"
+                   [apparels]="apparels[category]">
+    </shop-apparels>
 
-  </shop-apparels>
+  <ng-template #loading>Loading...</ng-template>
+
+
 </div>
 
+<app-footer *ngIf="apparels"></app-footer>

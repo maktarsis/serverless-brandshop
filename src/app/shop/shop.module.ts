@@ -8,6 +8,7 @@ import { MaterialModule } from '../shared/material/material.module';
 import { ShopComponent } from './shop.component';
 import { BarComponent } from './bar/bar.component';
 import { ApparelsComponent } from './apparels/apparels.component';
+import { FooterComponent } from '../components/footer/footer.component';
 
 @NgModule({
 	imports: [
@@ -16,7 +17,7 @@ import { ApparelsComponent } from './apparels/apparels.component';
 		shopRouting,
 		MaterialModule
 	],
-	declarations: [ShopComponent, BarComponent, ApparelsComponent],
+	declarations: [ShopComponent, BarComponent, ApparelsComponent, FooterComponent],
 	providers: [
 		ShopResolver
 	]

@@ -16,7 +16,6 @@ import { appRouting } from './app.routes';
 import { HomeModule } from './home/home.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { environment } from '../environments/environment';
@@ -40,7 +39,6 @@ import { SharedModule } from './shared/shared.module';
 	declarations: [
 		AppComponent,
 		HeaderComponent,
-		FooterComponent,
 		AuthComponent,
 		ShoppingCartComponent,
 	],
