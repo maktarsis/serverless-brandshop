@@ -15,7 +15,7 @@ const DIST_FOLDER = join(process.cwd(), '');
 
 const document = fs.readFileSync(__dirname + '/dist/index.html', 'utf8');
 
-const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('./dist-server/main.bundle');
+const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('./dist-server/main');
 // const AppServerModuleNgFactory = require(__dirname + '/dist-server/main.bundle');
 
 const { provideModuleMap } = require('@nguniversal/module-map-ngfactory-loader');

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observer } from 'rxjs/Observer';
-import { Observable } from 'rxjs/Observable';
+import { Observable, Observer } from 'rxjs';
 
 @Injectable()
 export class GeocodingService {

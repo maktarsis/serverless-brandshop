@@ -1,11 +1,12 @@
+import { share } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
 import { Apparel } from '../shop/shared/apparel.interface';
 
 @Injectable()
 export class CartService {
 	public cartApparels$: BehaviorSubject<Apparel[]> = new BehaviorSubject<Apparel[]>([]);
-	public cartApparelsCast$ = this.cartApparels$.asObservable().share();
+	public cartApparelsCast$ = this.cartApparels$.asObservable().pipe(share());
 
 	constructor() {
 		this.updateLS();

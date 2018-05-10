@@ -13,9 +13,12 @@ import {
 } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
 
-import 'rxjs/add/operator/takeUntil';
-import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
+import {
+	Observable,
+	Subject,
+	pipe
+} from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { Apparels } from './shared/apparels.interface';
 import { categories } from './shared/apparels.constants';
@@ -51,7 +54,7 @@ export class ShopComponent implements OnInit, OnDestroy {
 
 	public ngOnInit() {
 		this.route.data
-			.takeUntil(this.ngUnsubscribe)
+			.pipe(takeUntil(this.ngUnsubscribe))
 			.subscribe(data => {
 				this.category = data.category !== undefined ? data.category : 'all';
 			});
@@ -59,7 +62,7 @@ export class ShopComponent implements OnInit, OnDestroy {
 		this.categories = categories;
 
 		this.apparels$
-			.takeUntil(this.ngUnsubscribe)
+			.pipe(takeUntil(this.ngUnsubscribe))
 			.subscribe((allApparels: Apparels) => {
 				this.apparels = allApparels;
 				const flattenApparels = Object.values(allApparels).map(apparels => apparels);
