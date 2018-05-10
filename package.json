@@ -10,11 +10,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:ssr": "ng build --prod && ng build --prod --app=server --aot --output-hashing=none",
-    "new-build:ssr": "ng run reignarr-wear:build:production && ng run reignarr-wear:server:production",
+    "build:ssr": "ng run reignarr-wear:build:production && ng run reignarr-wear:server:production",
     "tsc:functions": "tsc -p server/tsconfig.functions.json",
-    "firebase:deploy": "npm run new-build:ssr && npm run tsc:functions && firebase deploy",
-    "firebase:deploy:hosting": "ng build --prod && firebase deploy --only hosting"
+    "firebase:deploy": "npm run build:ssr && npm run tsc:functions && firebase deploy"
   },
   "private": true,
   "dependencies": {
