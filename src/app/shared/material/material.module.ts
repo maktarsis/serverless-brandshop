@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import {
 	MatIconModule,
 	MatDialogModule,
@@ -6,8 +7,6 @@ import {
 	MatInputModule,
 	MatTooltipModule
 } from '@angular/material';
-
-import { FlexLayoutModule } from '@angular/flex-layout';
 
 const modules = [
 	MatIconModule,

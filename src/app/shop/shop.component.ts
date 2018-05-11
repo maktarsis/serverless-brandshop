@@ -79,7 +79,6 @@ export class ShopComponent implements OnInit, OnDestroy {
 
 	}
 
-
 	public add(input) {
 		if (input.value.length > 0) {
 			this.collection.add({

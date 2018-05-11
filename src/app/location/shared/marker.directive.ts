@@ -18,6 +18,7 @@ export class MarkerDirective implements OnChanges {
 
 	constructor(public map: MapService) {
 	}
+
 	/**
 	 * This method is invoked when the marker properties change.
 	 */

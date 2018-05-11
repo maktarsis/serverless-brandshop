@@ -5,8 +5,12 @@ import {
 
 @Component({
 	selector: 'app-root',
-	templateUrl: './app.component.html',
-	styleUrls: ['./app.component.scss'],
+	template: `
+    <app-header></app-header>
+    <!-- <home-feat></home-feat> -->
+    <router-outlet></router-outlet>
+    <!--<app-footer></app-footer>-->
+	`,
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
