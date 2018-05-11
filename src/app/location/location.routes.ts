@@ -4,14 +4,14 @@ import {
 	Routes
 } from '@angular/router';
 
-import { MapComponent } from './map/map.component';
+import { LocationComponent } from './location.component';
 import { StocklistsComponent } from './stocklists/stocklists.component';
 
 export const routes: Routes = [
 	{
-		path: '',
+		path: 'map',
 		pathMatch: 'full',
-		component: MapComponent
+		component: LocationComponent
 	},
 	{
 		path: 'stocklists',

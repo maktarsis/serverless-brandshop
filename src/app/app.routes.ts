@@ -4,7 +4,6 @@ import {
 	Routes
 } from '@angular/router';
 
-import { AuthComponent } from './components/auth/auth.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 
 export const routes: Routes = [
@@ -24,15 +23,10 @@ export const routes: Routes = [
 		path: 'cart',
 		pathMatch: 'full',
 		component: ShoppingCartComponent
-	},
-	{
-		path: 'auth',
-		pathMatch: 'full',
-		component: AuthComponent
 	}
 ];
 
-export const appRouting: ModuleWithProviders =
-	RouterModule.forRoot(routes
-		// { enableTracing: true}
-	);
+export const appRouting: ModuleWithProviders = RouterModule.forRoot(routes, {
+	initialNavigation: 'enabled',
+	enableTracing: false
+});
