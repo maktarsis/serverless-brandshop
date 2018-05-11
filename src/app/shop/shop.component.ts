@@ -11,7 +11,6 @@ import {
 	AngularFirestore,
 	AngularFirestoreDocument
 } from 'angularfire2/firestore';
-import { AngularFireAuth } from 'angularfire2/auth';
 
 import {
 	Observable,
@@ -40,7 +39,6 @@ export class ShopComponent implements OnInit, OnDestroy {
 	private ngUnsubscribe: Subject<boolean> = new Subject();
 
 	constructor(
-		private auth: AngularFireAuth,
 		private db: AngularFirestore,
 		private afs: AngularFirestore,
 		private route: ActivatedRoute,
@@ -81,9 +79,6 @@ export class ShopComponent implements OnInit, OnDestroy {
 
 	}
 
-	public logout() {
-		this.auth.auth.signOut();
-	}
 
 	public add(input) {
 		if (input.value.length > 0) {
