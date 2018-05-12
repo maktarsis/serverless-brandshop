@@ -28,9 +28,21 @@ export class PaymentComponent implements OnInit {
 
 	ngOnInit() {
 		this.form = this.fb.group({
-			name: ['', [Validators.required]],
-			phone: ['', [Validators.required]],
-			email: ['']
+			name: ['', [Validators.required, Validators.minLength(3)]],
+			phone: [
+				'', [
+					Validators.required,
+					Validators.minLength(5),
+					Validators.maxLength(11)
+				]
+			],
+			email: [
+				'',
+				[
+					Validators.required,
+					Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+				]
+			]
 		});
 	}
 
