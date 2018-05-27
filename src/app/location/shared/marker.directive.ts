@@ -22,7 +22,7 @@ export class MarkerDirective implements OnChanges {
 	/**
 	 * This method is invoked when the marker properties change.
 	 */
-	ngOnChanges(changes: { [propertyName: string]: SimpleChange }): void {
+	public ngOnChanges(changes: { [propertyName: string]: SimpleChange }): void {
 		// Creates the marker and the info window.
 		if (changes['position']) {
 			this.map.addMarker(this.position, this.title, this.content);

@@ -1,29 +1,33 @@
 import {
-	async,
-	ComponentFixture,
-	TestBed
+  async,
+  ComponentFixture,
+  TestBed
 } from '@angular/core/testing';
+import { MatIconModule } from '@angular/material';
 
 import { ApparelsComponent } from './apparels.component';
+import { CartService } from '../../shared/cart.service';
 
 describe('ApparelsComponent', () => {
-	let component: ApparelsComponent;
-	let fixture: ComponentFixture<ApparelsComponent>;
+  let component: ApparelsComponent;
+  let fixture: ComponentFixture<ApparelsComponent>;
 
-	beforeEach(async(() => {
-		TestBed.configureTestingModule({
-			declarations: [ApparelsComponent]
-		})
-			.compileComponents();
-	}));
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+          declarations: [ApparelsComponent],
+          imports: [MatIconModule],
+          providers: [CartService]
+        })
+        .compileComponents();
+  }));
 
-	beforeEach(() => {
-		fixture = TestBed.createComponent(ApparelsComponent);
-		component = fixture.componentInstance;
-		fixture.detectChanges();
-	});
+  beforeEach(() => {
+    fixture = TestBed.createComponent(ApparelsComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
-	it('should create', () => {
-		expect(component).toBeTruthy();
-	});
+  it('should init apparels component', () => {
+    expect(component).toBeTruthy();
+  });
 });

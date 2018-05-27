@@ -1,29 +1,31 @@
 import {
-	async,
-	ComponentFixture,
-	TestBed
+  async,
+  ComponentFixture,
+  TestBed
 } from '@angular/core/testing';
 
 import { GoogleMapComponent } from './google-map.component';
+import { MapService } from '../shared/map.service';
 
 describe('GoogleMapComponent', () => {
-	let component: GoogleMapComponent;
-	let fixture: ComponentFixture<GoogleMapComponent>;
+  let component: GoogleMapComponent;
+  let fixture: ComponentFixture<GoogleMapComponent>;
 
-	beforeEach(async(() => {
-		TestBed.configureTestingModule({
-			declarations: [GoogleMapComponent]
-		})
-			.compileComponents();
-	}));
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+          declarations: [GoogleMapComponent],
+          providers: [MapService]
+        })
+        .compileComponents();
+  }));
 
-	beforeEach(() => {
-		fixture = TestBed.createComponent(GoogleMapComponent);
-		component = fixture.componentInstance;
-		fixture.detectChanges();
-	});
+  beforeEach(() => {
+    fixture = TestBed.createComponent(GoogleMapComponent);
+    component = fixture.componentInstance;
+    // fixture.detectChanges();
+  });
 
-	it('should create', () => {
-		expect(component).toBeTruthy();
-	});
+  it('should init google-map component', () => {
+    expect(component).toBeTruthy();
+  });
 });

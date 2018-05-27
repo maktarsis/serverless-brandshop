@@ -3,6 +3,7 @@ import {
 	ComponentFixture,
 	TestBed
 } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { EntranceComponent } from './entrance.component';
 
@@ -12,7 +13,8 @@ describe('EntranceComponent', () => {
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [EntranceComponent]
+			declarations: [EntranceComponent],
+      imports: [RouterTestingModule],
 		}).compileComponents();
 	}));
 
@@ -22,7 +24,7 @@ describe('EntranceComponent', () => {
 		fixture.detectChanges();
 	});
 
-	it('should create', () => {
+	it('should init entrance component', () => {
 		expect(component).toBeTruthy();
 	});
 });

@@ -5,6 +5,7 @@ import {
 } from '@angular/core/testing';
 
 import { OrdersComponent } from './orders.component';
+import { MAT_DIALOG_DATA } from '@angular/material';
 
 describe('ShippingHandlingComponent', () => {
 	let component: OrdersComponent;
@@ -12,7 +13,10 @@ describe('ShippingHandlingComponent', () => {
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [OrdersComponent]
+			declarations: [OrdersComponent],
+          providers: [
+            { provide: MAT_DIALOG_DATA, useValue: {} }
+          ]
 		})
 			.compileComponents();
 	}));
@@ -23,7 +27,7 @@ describe('ShippingHandlingComponent', () => {
 		fixture.detectChanges();
 	});
 
-	it('should create', () => {
+	it('should init dialog orders component', () => {
 		expect(component).toBeTruthy();
 	});
 });
