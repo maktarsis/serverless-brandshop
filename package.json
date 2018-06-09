@@ -1,6 +1,6 @@
 {
   "name": "reignarrwear",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "author": "Mak Tarsis",
   "license": "MIT",
   "scripts": {
@@ -10,12 +10,12 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "tsc:ssr": "tsc -p server/tsconfig.functions.json",
     "build:ssr": "ng run reignarr-wear:build:production && ng run reignarr-wear:server:production",
     "build:analyze:dev": "ng build --dev --stats-json && npx webpack-bundle-analyzer functions/browser/stats.json",
     "build:analyze:prod": "ng build --prod --stats-json && npx webpack-bundle-analyzer functions/browser/stats.json",
-    "build:explorer:dev": "ng build && ngx source-map-explorer functions/browser/main.js",
-    "build:explorer:prod": "ng build --prod --source-map --output-hashing=none && ngx source-map-explorer functions/browser/main.js",
-    "tsc:ssr": "tsc -p server/tsconfig.functions.json",
+    "build:explorer:dev": "ng build && npx source-map-explorer functions/browser/vendor.js",
+    "build:explorer:prod": "ng build --prod --source-map --output-hashing=none && npx source-map-explorer functions/browser/main.js",
     "firebase:deploy": "npm run build:ssr && npm run tsc:ssr && firebase deploy"
   },
   "private": true,
