@@ -5,34 +5,45 @@
   width: 1000px;
 
   &__header {
-    color: #757070;
+    color: #1d0f60;
     text-transform: uppercase;
-    font-size: 24px;
+    font-size: 26px;
   }
 
   &__line {
-    border: 1px solid #626060;
+    border: 1px solid #1d0f60;
     width: 100%;
+    margin-bottom: 15px;
   }
 
   &__apparel {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    color: #3d3d54;
-    font-size: 17px;
+    color: #1d0f60;
+    font-size: 21px;
+
+    margin: 3px 0;
+
+    &:first-of-type {
+      margin-top: 0;
+    }
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
   }
 
   &__empty {
-    color: #757070;
-    font-size: 20px;
+    color: #1d0f60;
+    font-size: 21px;
   }
 
   &__subtotal {
-    margin-top: 20px;
+    margin-top: 80px;
     margin-left: auto;
     color: #1d0f60;
-    font-size: 19px;
+    font-size: 22px;
   }
 
   &__checkout {
@@ -40,8 +51,8 @@
     margin-left: auto;
     background: #1d0f60;
     color: white;
-    font-size: 17px;
-    width: 175px;
+    font-size: 21px;
+    width: 205px;
     border: 1px solid transparent;
     border-radius: 5px;
   }

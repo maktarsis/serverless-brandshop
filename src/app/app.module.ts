@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import {
-	BrowserModule,
-	BrowserTransferStateModule
+  BrowserModule,
+  BrowserTransferStateModule
 } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
@@ -15,22 +15,22 @@ import { HeaderComponent } from './components/header/header.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 
 @NgModule({
-	imports: [
-		BrowserModule.withServerTransition({ appId: 'app-root' }),
-		BrowserTransferStateModule,
-		HttpClientModule,
-		RouterModule,
-		appRouting,
-		SharedModule,
-		FirebaseModule
-	],
-	declarations: [
-		AppComponent,
-		HeaderComponent,
-		ShoppingCartComponent
-	],
-	bootstrap: [AppComponent],
-	providers: []
+  imports: [
+    BrowserModule.withServerTransition({ appId: 'app-root' }),
+    BrowserTransferStateModule,
+    HttpClientModule,
+    RouterModule,
+    appRouting,
+    SharedModule,
+    FirebaseModule
+  ],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    ShoppingCartComponent
+  ],
+  bootstrap: [AppComponent],
+  providers: []
 })
 export class AppModule {
 }

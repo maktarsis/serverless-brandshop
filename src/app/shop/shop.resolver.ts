@@ -8,7 +8,7 @@ import {
 @Injectable()
 export class ShopResolver implements Resolve<string> {
 
-	resolve(
+	public resolve(
 		route: ActivatedRouteSnapshot,
 		state: RouterStateSnapshot
 	): string {

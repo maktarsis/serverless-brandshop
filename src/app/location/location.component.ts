@@ -11,7 +11,7 @@ import { GeocodingService } from './shared/geocoding.service';
 import {} from '@types/googlemaps';
 
 @Component({
-  selector: 'location-root',
+  selector: 'location-feat',
   templateUrl: './location.component.html',
   styleUrls: ['./location.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

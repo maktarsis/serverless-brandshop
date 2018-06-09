@@ -53,7 +53,7 @@ app.get('**', function (req, res) {
 	});
 });
 
-export let ssrapp = functions.https.onRequest(app);
+export const ssrapp = functions.https.onRequest(app);
 
 app.listen(PORT, () => {
 	console.log(`Node server listening on http://localhost:${PORT}`);

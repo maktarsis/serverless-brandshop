@@ -5,7 +5,7 @@
   justify-content: space-between;
 
   &__gmap {
-    margin-bottom: 10px;
+    margin-bottom: 30px;
   }
 
   &__navigation {
@@ -24,8 +24,12 @@
       align-items: center;
     }
 
-    .search-input {
+    &.search-input {
       width: 60%;
+    }
+
+    /deep/ & > .mat-form-field-wrapper {
+      width: 100%;
     }
 
     .search-button {
@@ -38,8 +42,4 @@
       margin: 5px 0;
     }
   }
-}
-
-/deep/ .mat-input-wrapper {
-  width: 100%;
 }

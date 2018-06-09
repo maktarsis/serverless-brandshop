@@ -7,9 +7,7 @@ import {
 	selector: 'app-root',
 	template: `
     <app-header></app-header>
-    <!-- <home-feat></home-feat> -->
     <router-outlet></router-outlet>
-    <!--<app-footer></app-footer>-->
 	`,
 	changeDetection: ChangeDetectionStrategy.OnPush
 })

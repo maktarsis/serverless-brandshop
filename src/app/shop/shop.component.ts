@@ -1,21 +1,21 @@
 import {
-	Component,
-	OnInit,
-	OnDestroy,
-	ChangeDetectorRef,
-	ChangeDetectionStrategy
+  Component,
+  OnInit,
+  OnDestroy,
+  ChangeDetectorRef,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import {
-	AngularFirestore,
-	AngularFirestoreDocument
+  AngularFirestore,
+  AngularFirestoreDocument
 } from 'angularfire2/firestore';
 
 import {
-	Observable,
-	Subject,
-	pipe
+  Observable,
+  Subject,
+  pipe
 } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -23,84 +23,56 @@ import { Apparels } from './shared/apparels.interface';
 import { categories } from './shared/apparels.constants';
 
 @Component({
-	selector: 'shop-root',
-	templateUrl: './shop.component.html',
-	styleUrls: ['./shop.component.scss'],
-	changeDetection: ChangeDetectionStrategy.OnPush
+  selector: 'shop-feat',
+  templateUrl: './shop.component.html',
+  styleUrls: ['./shop.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ShopComponent implements OnInit, OnDestroy {
-	user;
-	collection;
-	public categories: string[];
-	public apparels: Apparels;
-	public category: string;
-	public apparelsCollection: AngularFirestoreDocument<Apparels>;
-	public apparels$: Observable<Apparels>;
-	private ngUnsubscribe: Subject<boolean> = new Subject();
+  public apparels: Apparels;
+  public apparelsCollection: AngularFirestoreDocument<Apparels>;
+  public apparels$: Observable<Apparels>;
+  public category: string;
+  public categories: string[];
+  public loading: boolean;
+  private ngUnsubscribe: Subject<boolean> = new Subject();
 
-	constructor(
-		private db: AngularFirestore,
-		private afs: AngularFirestore,
-		private route: ActivatedRoute,
-		private cdr: ChangeDetectorRef
-	) {
-		db.firestore.settings({ timestampsInSnapshots: true });
-		this.apparelsCollection = this.afs.collection('apparels').doc('all');
-		this.apparels$ = this.apparelsCollection.valueChanges();
+  constructor(
+      private db: AngularFirestore,
+      private afs: AngularFirestore,
+      private route: ActivatedRoute,
+      private cdr: ChangeDetectorRef
+  ) {
+    db.firestore.settings({ timestampsInSnapshots: true });
+    this.apparelsCollection = this.afs.collection('apparels').doc('all');
+    this.apparels$ = this.apparelsCollection.valueChanges();
 
-	}
+  }
 
-	public ngOnInit() {
-		this.route.data
-			.pipe(takeUntil(this.ngUnsubscribe))
-			.subscribe(data => {
-				this.category = data.category !== undefined ? data.category : 'all';
-			});
+  public ngOnInit() {
+    this.route.data
+        .pipe(takeUntil(this.ngUnsubscribe))
+        .subscribe((data: { category: string }) => {
+          this.loading = this.apparels === undefined;
+          this.category = data.category === undefined ? 'all' : data.category;
+        });
 
-		this.categories = categories;
+    this.categories = categories;
 
-		this.apparels$
-			.pipe(takeUntil(this.ngUnsubscribe))
-			.subscribe((allApparels: Apparels) => {
-				this.apparels = allApparels;
-				const flattenApparels = Object.values(allApparels).map(apparels => apparels);
-				this.apparels.all = [].concat.apply([], flattenApparels);
-				this.cdr.markForCheck();
-			});
+    this.apparels$
+        .pipe(takeUntil(this.ngUnsubscribe))
+        .subscribe((allApparels: Apparels) => {
+          console.log('asd');
+          this.apparels = allApparels;
+          const flattenApparels = Object.values(allApparels).map(apparels => apparels);
+          this.apparels.all = [].concat.apply([], flattenApparels);
+          this.loading = false;
+          this.cdr.detectChanges();
+        });
+  }
 
-		// this.auth.authState.subscribe(user => {
-		// 	if (user) {
-		// 		this.user = user;
-		// 		return;
-		// 	}
-		//
-		// 	this.router.navigate(['']);
-		// });
-
-	}
-
-	public add(input) {
-		if (input.value.length > 0) {
-			this.collection.add({
-				text: input.value,
-				user: this.user.email,
-				createdAt: new Date(),
-				likes: 0
-			});
-			input.value = '';
-		}
-	}
-
-	public like(id: string, previousCount: number) {
-		this.collection.doc(id).update({ likes: previousCount + 1 });
-	}
-
-	public delete(id: string) {
-		this.collection.doc(id).delete();
-	}
-
-	public ngOnDestroy(): void {
-		this.ngUnsubscribe.next();
-		this.ngUnsubscribe.complete();
-	}
+  public ngOnDestroy(): void {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
+  }
 }
