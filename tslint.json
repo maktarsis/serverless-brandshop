@@ -124,7 +124,8 @@
         "auth",
         "location",
         "shop",
-        "home"
+        "home",
+        "user-center"
       ],
       "kebab-case"
     ],

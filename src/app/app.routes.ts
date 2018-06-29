@@ -20,6 +20,10 @@ export const routes: Routes = [
     loadChildren: 'app/location/location.module#LocationModule'
   },
   {
+    path: 'user-center',
+    loadChildren: 'app/user-center/user-center.module#UserCenterModule'
+  },
+  {
     path: 'cart',
     pathMatch: 'full',
     component: ShoppingCartComponent

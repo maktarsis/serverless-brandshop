@@ -19,13 +19,5 @@
         (toggleAuthMethodEmitter)="toggleAuthMethod()">
     </auth-sign-in>
   </div>
-
-  <button *ngIf="user && user.catchPhrase"
-          class="auth__sign-out"
-          mat-raised-button
-          (click)="signOut()">
-  Sign out
-  </button>
-
 </div>
 

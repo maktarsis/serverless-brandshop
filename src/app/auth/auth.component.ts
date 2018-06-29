@@ -2,12 +2,16 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  OnInit
+  OnInit,
+  OnDestroy
 } from '@angular/core';
+import { MatDialogRef } from '@angular/material';
 
 import { AuthService } from './auth.service';
 import { Credentials } from './interfaces/credentials.interface';
 import { User } from './interfaces/user.interface';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'auth-root',
@@ -15,28 +19,32 @@ import { User } from './interfaces/user.interface';
   styleUrls: ['./auth.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AuthComponent implements OnInit {
+export class AuthComponent implements OnInit, OnDestroy {
   public user: User;
   public isNewUser: boolean;
+  private ngUnsubscribe: Subject<void> = new Subject<void>();
 
   constructor(
       private authService: AuthService,
-      private cdr: ChangeDetectorRef
+      private cdr: ChangeDetectorRef,
+      private dialogRef: MatDialogRef<AuthComponent>
   ) {
   }
 
   public ngOnInit(): void {
     this.isNewUser = true;
 
-    this.authService.user$.subscribe((user: User) => {
-      this.user = user;
+    this.authService.user$
+        .pipe(takeUntil(this.ngUnsubscribe))
+        .subscribe((user: User) => {
+          this.user = user;
 
-      if (user === null) {
-        return;
-      }
+          if (user === null) {
+            return;
+          }
 
-      this.cdr.detectChanges();
-    });
+          this.cdr.detectChanges();
+        });
   }
 
   public signIn(credentials: Credentials): void {
@@ -48,15 +56,24 @@ export class AuthComponent implements OnInit {
   }
 
   public setCatchPhrase(catchPhrase: string): void {
-    this.authService.updateUser(this.user, { catchPhrase });
-  }
+    this.authService.updateUser(this.user, { catchPhrase })
+        .then((res) => {
+          // TODO: succ notification about successful set catchPhrase
+        })
+        .catch((err: Error) => {
+          console.error(err);
+          // TODO: err notification about unsuccessful set catchPhrase
+        });
 
-  public signOut(): void {
-    this.authService.signOut();
-    this.cdr.detectChanges();
+    this.dialogRef.close({ signedUp: true });
   }
 
   public toggleAuthMethod(): void {
     this.isNewUser = !this.isNewUser;
+  }
+
+  public ngOnDestroy(): void {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 }

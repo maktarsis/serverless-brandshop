@@ -1,11 +1,14 @@
 import {
   ChangeDetectionStrategy,
-  Component
+  Component,
+  OnInit
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 
 import { AuthComponent } from '../../auth/auth.component';
+import { AuthService } from '../../auth/auth.service';
+import { User } from '../../auth/interfaces/user.interface';
 
 @Component({
   selector: 'app-header',
@@ -13,16 +16,27 @@ import { AuthComponent } from '../../auth/auth.component';
   styleUrls: ['./header.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
+  private user: User;
 
   constructor(
       public router: Router,
+      private authService: AuthService,
       private dialog: MatDialog
   ) {
   }
 
+  public ngOnInit(): void {
+    this.authService.user$.subscribe((user: User) => this.user = user);
+  }
+
   public auth(): void {
-    this.authPopUp();
+    if (!this.user || this.user.catchPhrase === undefined) {
+      this.authPopUp();
+      return;
+    }
+
+    this.router.navigate(['user-center']).catch((err: Error) => console.error(err));
   }
 
   private authPopUp(): void {
@@ -30,10 +44,17 @@ export class HeaderComponent {
       width: '30%'
     });
 
-    dialogRef.afterClosed().subscribe((contact: any) => {
-      if (!contact) {
-        return;
-      }
-    });
+    dialogRef.afterClosed()
+        .subscribe((res: any) => {
+          if (res === undefined) {
+            return;
+          }
+
+          if (res.signedUp) {
+            this.router.navigate(['user-center']).catch((err: Error) => console.error(err));
+          }
+
+          console.log(res);
+        });
   }
 }
