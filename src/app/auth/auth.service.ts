@@ -40,10 +40,10 @@ export class AuthService {
 
   }
 
-  public emailSignUp({ email, password }: Credentials): void {
+  public emailSignUp({ email, password }: Credentials): any {
     this.afAuth.auth.createUserWithEmailAndPassword(email, password)
-        .then((user: fbUser) => this.setUserDoc(user))
-        .catch((error: Error) => console.error(error));
+        .then((user: any) => this.setUserDoc(user).catch((err: Error) => console.error(err)))
+        .catch((err: Error) => console.error(err));
   }
 
   public updateUser(user: User, data: { catchPhrase: string }): Promise<void> {
