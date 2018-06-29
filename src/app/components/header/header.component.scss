@@ -12,12 +12,13 @@
   &__brandline {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     height: 60px;
     //background: #0a052c;
     //border-bottom: 1px solid #d2cbea;
     background: #0a0a0a;
     //border-bottom: 1px solid #ebebeb;
-    padding-left: 20px;
+    padding: 0 20px;
   }
 
   &__brandname {
@@ -55,7 +56,16 @@
   }
 
   &__icon {
-    font-size: 28px;
+    cursor: pointer;
+
+    &-profile {
+      padding: 10px;
+      font-size: 32px;
+    }
+
+    &-cart {
+      font-size: 28px;
+    }
   }
 }
 

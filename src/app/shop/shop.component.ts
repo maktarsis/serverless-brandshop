@@ -38,12 +38,10 @@ export class ShopComponent implements OnInit, OnDestroy {
   private ngUnsubscribe: Subject<boolean> = new Subject();
 
   constructor(
-      private db: AngularFirestore,
       private afs: AngularFirestore,
       private route: ActivatedRoute,
       private cdr: ChangeDetectorRef
   ) {
-    db.firestore.settings({ timestampsInSnapshots: true });
     this.apparelsCollection = this.afs.collection('apparels').doc('all');
     this.apparels$ = this.apparelsCollection.valueChanges();
 
@@ -62,7 +60,6 @@ export class ShopComponent implements OnInit, OnDestroy {
     this.apparels$
         .pipe(takeUntil(this.ngUnsubscribe))
         .subscribe((allApparels: Apparels) => {
-          console.log('asd');
           this.apparels = allApparels;
           const flattenApparels = Object.values(allApparels).map(apparels => apparels);
           this.apparels.all = [].concat.apply([], flattenApparels);

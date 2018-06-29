@@ -119,7 +119,13 @@
     "component-selector": [
       true,
       "element",
-      "app",
+      [
+        "app",
+        "auth",
+        "location",
+        "shop",
+        "home"
+      ],
       "kebab-case"
     ],
     "use-input-property-decorator": true,

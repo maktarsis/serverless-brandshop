@@ -13,6 +13,7 @@ import { appRouting } from './app.routes';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
     RouterModule,
     appRouting,
     SharedModule,
-    FirebaseModule
+    FirebaseModule,
+    AuthModule
   ],
   declarations: [
     AppComponent,

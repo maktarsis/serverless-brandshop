@@ -1,15 +1,21 @@
 import {
-	ChangeDetectionStrategy,
-	Component
+  ChangeDetectionStrategy,
+  Component
 } from '@angular/core';
 
+import { AngularFirestore } from 'angularfire2/firestore';
+
 @Component({
-	selector: 'app-root',
-	template: `
+  selector: 'app-root',
+  template: `
     <app-header></app-header>
     <router-outlet></router-outlet>
-	`,
-	changeDetection: ChangeDetectionStrategy.OnPush
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
+  constructor(private db: AngularFirestore) {
+    db.firestore.settings({ timestampsInSnapshots: true });
+    db.firestore.enablePersistence();
+  }
 }

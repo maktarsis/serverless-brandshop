@@ -18,7 +18,7 @@ import { Contact } from '../../interfaces/contact.interface';
 type subtotal = number;
 
 @Component({
-  selector: 'app-payment',
+  selector: 'app-payment-dialog',
   templateUrl: './payment.component.html',
   styleUrls: ['./payment.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
