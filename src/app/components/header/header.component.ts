@@ -36,7 +36,7 @@ export class HeaderComponent implements OnInit {
       return;
     }
 
-    this.router.navigate(['user-center']).catch((err: Error) => console.error(err));
+    this.router.navigate(['user-center', this.user.uid]).catch((err: Error) => console.error(err));
   }
 
   private authPopUp(): void {
@@ -44,17 +44,14 @@ export class HeaderComponent implements OnInit {
       width: '30%'
     });
 
-    dialogRef.afterClosed()
-        .subscribe((res: any) => {
-          if (res === undefined) {
-            return;
-          }
+    dialogRef.afterClosed().subscribe((res: any) => {
+      if (res === undefined) {
+        return;
+      }
 
-          if (res.signedUp) {
-            this.router.navigate(['user-center']).catch((err: Error) => console.error(err));
-          }
-
-          console.log(res);
-        });
+      if (res.signedUp) {
+        this.router.navigate(['user-center', this.user.uid]).catch((err: Error) => console.error(err));
+      }
+    });
   }
 }

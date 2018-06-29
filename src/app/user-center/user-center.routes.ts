@@ -8,7 +8,7 @@ import { UserCenterComponent } from './user-center.component';
 
 export const routes: Routes = [
   {
-    path: '',
+    path: ':uid',
     pathMatch: 'full',
     component: UserCenterComponent
   }
