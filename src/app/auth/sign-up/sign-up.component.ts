@@ -12,8 +12,8 @@ import {
   Validators
 } from '@angular/forms';
 
-import { User as fbUser } from 'firebase';
 import { Credentials } from '../interfaces/credentials.interface';
+import { User } from '../interfaces/user.interface';
 
 @Component({
   selector: 'auth-sign-up',
@@ -26,7 +26,7 @@ export class SignUpComponent implements OnInit {
   public detailForm: FormGroup;
 
   @Input()
-  public user: fbUser;
+  public user: User;
   @Output()
   public signUpEmitter: EventEmitter<Credentials> = new EventEmitter<Credentials>();
   @Output()

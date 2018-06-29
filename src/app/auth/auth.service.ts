@@ -41,23 +41,19 @@ export class AuthService {
         .catch((error: Error) => this.handleError(error));
   }
 
-  public updateUser(user: User, data: { catchPhrase: string }): any {
-    return this.afs.doc(`users/${user.uid}`).update(data);
+  public updateUser(user: User, data: { catchPhrase: string }): void {
+    this.afs.doc(`users/${user.uid}`).update(data).then();
   }
 
   public signOut(): void {
-    this.afAuth.auth.signOut();
+    this.afAuth.auth.signOut().then();
   }
 
   public signIn({ email, password }: Credentials): void {
-    this.afAuth.auth.signInWithEmailAndPassword(email, password);
+    this.afAuth.auth.signInWithEmailAndPassword(email, password).then();
   }
 
-  private handleError(error): void {
-    console.error(error);
-  }
-
-  private setUserDoc(user: fbUser): any {
+  private setUserDoc(user: fbUser): Promise<void> {
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
 
     const data: User = {
@@ -66,5 +62,9 @@ export class AuthService {
     };
 
     return userRef.set(data);
+  }
+
+  private handleError(error): void {
+    console.error(error);
   }
 }

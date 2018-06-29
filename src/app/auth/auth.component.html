@@ -1,22 +1,32 @@
-<ng-container *ngIf="isNewUser && (!user || !user.catchPhrase)">
-  <auth-sign-up
-      [user]="user"
-      (signUpEmitter)="signUp($event)"
-      (setCatchPhraseEmitter)="setCatchPhrase($event)"
-      (toggleAuthMethodEmitter)="toggleAuthMethod()">
-  </auth-sign-up>
-</ng-container>
+<div class="auth">
+  <img class="auth__logo" src="/assets/Reignarr.png" alt="logo">
 
-<ng-container *ngIf="!isNewUser && !user">
-  <auth-sign-in
-      [user]="user"
-      (signInEmitter)="signIn($event)"
-      (toggleAuthMethodEmitter)="toggleAuthMethod()">
-  </auth-sign-in>
-</ng-container>
+  <div class="auth__method" *ngIf="isNewUser && (!user || !user.catchPhrase)">
+    <auth-sign-up
+        [user]="user"
+        (signUpEmitter)="signUp($event)"
+        (setCatchPhraseEmitter)="setCatchPhrase($event)"
+        (toggleAuthMethodEmitter)="toggleAuthMethod()">
+    </auth-sign-up>
+  </div>
+
+  <div class="auth__method" *ngIf="!isNewUser && !user">
+    <auth-sign-in
+        [user]="user"
+        (signInEmitter)="signIn($event)"
+        (toggleAuthMethodEmitter)="toggleAuthMethod()">
+    </auth-sign-in>
+  </div>
 
 
 
-<!--<button *ngIf="true" mat-raised-button color="primary" (click)="signOut()">-->
-  <!--Sign Out-->
-<!--</button>-->
+
+  <button *ngIf="user && user.catchPhrase"
+          class="auth__sign-out"
+          mat-raised-button
+          (click)="signOut()">
+  Sign out
+  </button>
+
+</div>
+

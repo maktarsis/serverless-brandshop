@@ -16,6 +16,6 @@ import { AngularFirestore } from 'angularfire2/firestore';
 export class AppComponent {
   constructor(private db: AngularFirestore) {
     db.firestore.settings({ timestampsInSnapshots: true });
-    db.firestore.enablePersistence();
+    // db.firestore.enablePersistence();
   }
 }

@@ -27,8 +27,7 @@ export class HeaderComponent {
 
   private authPopUp(): void {
     const dialogRef = this.dialog.open(AuthComponent, {
-      height: '300px',
-      width: '400px'
+      width: '30%'
     });
 
     dialogRef.afterClosed().subscribe((contact: any) => {

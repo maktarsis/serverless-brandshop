@@ -4,9 +4,10 @@ import {
   Component,
   OnInit
 } from '@angular/core';
-import { User as fbUser } from 'firebase';
+
 import { AuthService } from './auth.service';
 import { Credentials } from './interfaces/credentials.interface';
+import { User } from './interfaces/user.interface';
 
 @Component({
   selector: 'auth-root',
@@ -15,7 +16,7 @@ import { Credentials } from './interfaces/credentials.interface';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AuthComponent implements OnInit {
-  public user: fbUser;
+  public user: User;
   public isNewUser: boolean;
 
   constructor(
@@ -27,8 +28,13 @@ export class AuthComponent implements OnInit {
   public ngOnInit(): void {
     this.isNewUser = true;
 
-    this.authService.user$.subscribe((user: fbUser) => {
+    this.authService.user$.subscribe((user: User) => {
       this.user = user;
+
+      if (user === null) {
+        return;
+      }
+
       this.cdr.detectChanges();
     });
   }
@@ -47,6 +53,7 @@ export class AuthComponent implements OnInit {
 
   public signOut(): void {
     this.authService.signOut();
+    this.cdr.detectChanges();
   }
 
   public toggleAuthMethod(): void {
