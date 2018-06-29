@@ -1,5 +1,7 @@
 <div class="auth">
-  <img class="auth__logo" src="/assets/Reignarr.png" alt="logo">
+  <div class="auth__logo-wrapper">
+    <img class="auth__logo" src="/assets/Reignarr.png" alt="logo">
+  </div>
 
   <div class="auth__method" *ngIf="isNewUser && (!user || !user.catchPhrase)">
     <auth-sign-up
@@ -17,9 +19,6 @@
         (toggleAuthMethodEmitter)="toggleAuthMethod()">
     </auth-sign-in>
   </div>
-
-
-
 
   <button *ngIf="user && user.catchPhrase"
           class="auth__sign-out"

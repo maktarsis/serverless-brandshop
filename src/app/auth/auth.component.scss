@@ -11,6 +11,10 @@
   &__logo {
     width: 50%;
     align-self: center;
+
+    &-wrapper {
+      min-height: 110px;
+    }
   }
 
   &__method {
