@@ -8,7 +8,6 @@ import {
 import { MapService } from './shared/map.service';
 import { GeolocationService } from './shared/geolocation.service';
 import { GeocodingService } from './shared/geocoding.service';
-import {} from '@types/googlemaps';
 
 @Component({
   selector: 'location-feat',

@@ -10,12 +10,11 @@ import { ActivatedRoute } from '@angular/router';
 import {
   AngularFirestore,
   AngularFirestoreDocument
-} from 'angularfire2/firestore';
+} from '@angular/fire/firestore';
 
 import {
   Observable,
-  Subject,
-  pipe
+  Subject
 } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
